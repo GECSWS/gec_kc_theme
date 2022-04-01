@@ -1,0 +1,699 @@
+{{!------------
+   Hero element
+   ------------}}
+<div class="hero relative overflow-hidden{{#is settings.hero_image_style 'standard'}} bg-home bg-cover bg-center{{/is}}">
+
+  {{!--------------------
+     Hero element content
+     --------------------}}
+  <div class="relative container z-30{{#if settings.fixed_header}} mt-8 lg:mt-6{{/if}} py-6 lg:py-8">
+
+    {{!------------------
+       Hero element title
+       ------------------}}
+    <div class="my-6 text-{{settings.hero_content_alignment}}{{#unless settings.hero_heading}}{{#unless settings.hero_text}} hidden{{/unless}}{{/unless}}">
+      {{~#if settings.hero_heading}}
+        <h1 class="font-size-4xl">
+          {{~#if settings.use_translations}}
+            {{dc settings.hero_heading}}
+          {{else}}
+            {{settings.hero_heading}}
+          {{/if~}}
+        </h1>
+      {{/if~}}
+      {{~#if settings.hero_text}}
+        <p class="font-size-xl">
+          {{~#if settings.use_translations}}
+            {{dc settings.hero_text}}
+          {{else}}
+            {{settings.hero_text}}
+          {{/if~}}
+        </p>
+      {{/if~}}
+    </div>
+
+    {{!-----------------------
+       Hero element search bar
+       -----------------------}}
+    <div class="search search-lg{{#if settings.search_translucent}} search-translucent blur{{/if}} font-size-lg lg:font-size-xl text-base max-w-md my-4{{#is settings.hero_content_alignment 'center'}} mx-auto{{/is}}">
+      <h2 class="sr-only">{{ t 'search' }}</h2>
+      {{~#if settings.search_placeholder}}
+        {{#if settings.use_translations}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=(dc settings.search_placeholder)}}
+        {{else}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=settings.search_placeholder}}
+        {{/if}}
+      {{else}}
+        {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button}}
+      {{/if~}}
+      <svg class="search-icon transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </div>
+
+    {{~#isnt settings.popular_keywords_style 'none'}}
+      {{~#if settings.popular_keywords}}
+        {{!----------------
+           Popular keywords
+           ----------------}}
+        <div id="popular-keywords">
+          <script type="text/javascript">
+            ready(function() {
+              Util.renderTemplate(document.getElementById('popular-keywords'), 'popular-keywords', {
+                keywords: '{{#if settings.use_translations}}{{dc settings.popular_keywords}}{{else}}{{settings.popular_keywords}}{{/if}}'
+              });
+            })
+          </script>
+        </div>
+      {{/if~}}
+    {{/isnt~}}
+
+  </div>
+
+  {{#isnt settings.hero_image_style 'standard'}}
+    {{#isnt settings.hero_image_style 'parallax'}}
+      {{!-------------------------------
+         Hero background image (overlay)
+         -------------------------------}}
+      <div class="absolute z-20 top-0 left-0 h-full w-full bg-home{{#is settings.hero_image_style 'overlay'}} bg-cover bg-center{{/is}}{{#is settings.hero_image_style 'overlay-pattern'}} bg-repeat{{/is}}"></div>
+    {{/isnt}}
+  {{/isnt}}
+
+  {{!---------------------
+     Hero background color
+     ---------------------}}
+  <div class="absolute z-10 top-0 left-0 h-full w-full bg-hero"></div>
+
+  {{#is settings.hero_image_style 'parallax'}}
+    {{!--------------------------------
+       Hero background image (parallax)
+       --------------------------------}}
+    <div class="absolute z-0 top-0 left-0 w-full h-full">
+      <div class="relative w-full h-full overflow-hidden">
+        <div class="absolute top-0 left-0 w-full bg-home bg-cover bg-center" x-data="Widgets.parallaxImage" style="height: 150%"></div>
+      </div>
+    </div>
+  {{/is}}
+
+  {{~#isnt settings.hero_element_shape 'none'}}
+    {{!------------
+       SVG dividers
+       ------------}}
+    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+      {{~#is settings.hero_element_shape 'book'}}class="svg-shape -mt-4 rotate-180" viewBox="0 0 1200 120"{{/is~}}
+      {{~#is settings.hero_element_shape 'curve'}}class="svg-shape -mt-6" viewBox="0 0 100 100"{{/is~}}
+      {{~#is settings.hero_element_shape 'curves'}}class="svg-shape -mt-6 rotate-180" viewBox="0 0 240 24"{{/is~}}
+      {{~#is settings.hero_element_shape 'diagonal'}}class="svg-shape -mt-4 rotate-180" viewBox="0 0 1000 100"{{/is~}}
+      {{~#is settings.hero_element_shape 'hills'}}class="svg-shape -mt-4" viewBox="0 0 240 24"{{/is~}}
+      {{~#is settings.hero_element_shape 'mountains'}}class="svg-shape rotate-180" viewBox="0 0 1000 100"{{/is~}}
+      {{~#is settings.hero_element_shape 'rays'}}class="svg-shape rotate-180" viewBox="0 0 2600 130.1"{{/is~}}
+      {{~#is settings.hero_element_shape 'triangle'}}class="svg-shape rotate-180" viewBox="0 0 1000 100"{{/is~}}
+      {{~#is settings.hero_element_shape 'wave'}}class="svg-shape rotate-180" viewBox="0 0 1000 100"{{/is~}}
+      {{~#is settings.hero_element_shape 'waves'}}class="svg-shape rotate-180" viewBox="0 0 283.5 27.8"{{/is~}}
+      {{~#is settings.hero_element_shape 'zigzag'}}class="svg-shape rotate-180" viewBox="0 0 1000 100"{{/is~}}>
+      <use xlink:href="#shape-{{settings.hero_element_shape}}" />
+    </svg>
+  {{/isnt~}}
+
+</div> {{! /.hero }}
+
+<div class="relative flex flex-column z-40" id="page-container">
+
+  {{~#is settings.notification_location 'home'}}
+    {{~#if settings.notification_content}}
+      {{!------------
+         Notification
+         ------------}}
+      <div class="flex-first" data-element="template" data-template="notification"></div>
+    {{/if~}}
+  {{/is~}}
+
+  {{#isnt settings.custom_block_style 'none'}}
+    {{!-------------
+       Custom blocks
+       -------------}}
+    <div class="custom-blocks bg-custom-blocks" id="custom-blocks">
+      <script type="text/javascript">
+        ready(function() {
+          Util.renderTemplate(document.getElementById('custom-blocks'), 'custom-blocks', Theme.customBlocks);
+        })
+      </script>
+    </div>
+  {{/isnt}}
+
+  {{#isnt settings.content_block_style 'none'}}
+    {{!---------------------------------
+       Content (category/section) blocks
+       ---------------------------------}}
+    {{#is settings.content_block_style '1-tabs'}}
+
+      {{! Tabs style }}
+      <div class="relative sticky-top bg-white shadow-xs">
+        <div class="container scroll-x">
+          <ul class="nav nav-line flex-no-wrap white-space-no-wrap">
+            {{#each categories}}
+              <li class="nav-item font-medium">
+                <a class="nav-link py-5 text-inherit {{#if @first}}is-active{{else}}ml-3{{/if}}" href="#category-tab-{{id}}" data-toggle="tab" role="tab">
+                  {{name}}
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{#each categories}}
+        <div class="tab fade{{#if @first}} is-active flex flex-column is-shown{{/if}}" id="category-tab-{{id}}" role="tabpanel" data-active-class="is-active flex flex-column" x-data="{ promotedArticles: false }">
+
+          {{!--------
+             Sections
+             --------}}
+          <div class="content-blocks bg-content-blocks" id="content-blocks">
+            <div class="container py-4 text-{{../settings.content_block_alignment}}">
+
+              {{#if ../settings.content_blocks_heading}}
+                <h2 class="inline-flex align-items-baseline mt-6" x-data="{ src: Theme.assets['content-blocks-heading'] }">
+                  <template x-if="src">
+                    <img class="svg-icon mr-2" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                  </template>
+                  {{#if ../settings.use_translations}}
+                    {{dc ../settings.content_blocks_heading}}
+                  {{else}}
+                    {{../settings.content_blocks_heading}}
+                  {{/if}}
+                </h2>
+              {{/if}}
+
+              <ul class="list-unstyled row justify-content-start">
+                {{#each sections}}
+                  <li class="col-12 flex flex-column align-items-stretch mb-6 text-{{../../settings.content_block_alignment}}
+                    {{~#if (compare ../../settings.number_content_block_columns ">=" "2")}} md:col-6{{/if~}}
+                    {{~#if (compare ../../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
+                    {{~#if (compare ../../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
+                    {{#if ../../settings.content_block_image_height}}
+                      <img class="svg-icon mt-4 {{#is ../../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" src="{{asset 'placeholder.png'}}" alt="{{name}}" data-inline-svg data-asset="image" data-asset-id="section-{{id}}" data-default-asset-id="section-default" style="height: {{../../settings.content_block_image_height}}; width: auto;">
+                    {{/if}}
+                    <h3>
+                      {{name}}
+                    </h3>
+                    {{#if description}}
+                      <p class="font-size-lg mb-5">
+                        {{description}}
+                      </p>
+                    {{/if}}
+                    <a class="text-inherit font-medium link-stretched underline{{#isnt ../../settings.color_content_blocks 'white'}} hover:text-{{../../settings.color_content_blocks}}{{/isnt}}" href="{{url}}">
+                      {{t 'show_all_articles' count=article_count}}
+                    </a>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+
+          {{~#isnt ../settings.promoted_article_list_style 'none'}}
+            {{!-----------------
+               Promoted articles
+               -----------------}}
+            <div class="container py-4{{#is ../settings.promoted_article_list_position 'before'}} flex-first{{/is}}" x-cloak :class="{ 'hidden': !promotedArticles }" >
+              <div
+                data-element="navigation"
+                data-template="promoted-articles"
+                data-category-id="{{id}}"
+                data-properties='[ "id", "title", "body", "html_url", "position", "promoted", "label_names", "draft", "section_id", "category_id", "parent_section_id", "created_at" ]'
+                @navigation:render="promotedArticles = $event.target.children.length > 0"
+              ></div>
+            </div>
+          {{/isnt~}}
+
+        </div>
+      {{/each}}
+    {{else}}
+
+      {{! Built in styles }}
+      <div class="content-blocks bg-content-blocks" id="content-blocks">
+        <div class="container py-4 text-{{settings.content_block_alignment}}">
+          {{#if (compare settings.content_block_style '<=' '8')}}
+
+            {{#if settings.content_blocks_heading}}
+              <h2 class="inline-flex align-items-baseline mt-6" x-data="{ src: Theme.assets['content-blocks-heading'] }">
+                <template x-if="src">
+                  <img class="svg-icon mr-2" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                </template>
+                {{#if settings.use_translations}}
+                  {{dc settings.content_blocks_heading}}
+                {{else}}
+                  {{settings.content_blocks_heading}}
+                {{/if}}
+              </h2>
+            {{/if}}
+
+            {{! Columns style }}
+            {{#is settings.content_block_style '2-columns'}}
+              <ul class="list-unstyled row justify-content-start">
+                {{#each categories}}
+                  {{#if ../has_multiple_categories}}
+                    <li class="col-12 flex flex-column align-items-stretch mb-6 text-{{../settings.content_block_alignment}}
+                      {{~#if (compare ../settings.number_content_block_columns ">=" "2")}} md:col-6{{/if~}}
+                      {{~#if (compare ../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
+                      {{~#if (compare ../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
+                      {{#if ../settings.content_block_image_height}}
+                        <img class="svg-icon mt-4 {{#is ../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="category-{{id}}" src="
+                          {{~#is @index 0~}}{{../settings.content_block_1_image}}{{~/is~}}
+                          {{~#is @index 1~}}{{../settings.content_block_2_image}}{{~/is~}}
+                          {{~#is @index 2~}}{{../settings.content_block_3_image}}{{~/is~}}
+                          {{~#is @index 3~}}{{../settings.content_block_4_image}}{{~/is~}}
+                          {{~#is @index 4~}}{{../settings.content_block_5_image}}{{~/is~}}
+                          {{~#is @index 5~}}{{../settings.content_block_6_image}}{{~/is~}}
+                          {{~#is @index 6~}}{{../settings.content_block_7_image}}{{~/is~}}
+                          {{#if (compare @index ">=" 7)}}{{../settings.content_block_8_image}}{{/if}}
+                        " style="height: {{../settings.content_block_image_height}}; width: auto;" />
+                      {{/if}}
+                      <h3>
+                        {{name}}
+                      </h3>
+                      {{#if description}}
+                        <p class="font-size-lg mb-5">
+                          {{description}}
+                        </p>
+                      {{/if}}
+                      <a class="text-inherit font-medium link-stretched underline{{#isnt ../settings.color_content_blocks 'white'}} hover:text-{{../settings.color_content_blocks}}{{/isnt}}" href="{{url}}">
+                        {{t 'show_all_articles'}}
+                      </a>
+                    </li>
+                  {{else}}
+                    {{#each sections}}
+                      <li class="col-12 flex flex-column align-items-stretch mb-6 text-{{../../settings.content_block_alignment}}
+                        {{~#if (compare ../../settings.number_content_block_columns ">=" "2")}} md:col-6{{/if~}}
+                        {{~#if (compare ../../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
+                        {{~#if (compare ../../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
+                        {{#if ../../settings.content_block_image_height}}
+                          <img class="svg-icon mt-4 {{#is ../../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="section-{{id}}" src="
+                            {{~#is @index 0~}}{{../../settings.content_block_1_image}}{{~/is~}}
+                            {{~#is @index 1~}}{{../../settings.content_block_2_image}}{{~/is~}}
+                            {{~#is @index 2~}}{{../../settings.content_block_3_image}}{{~/is~}}
+                            {{~#is @index 3~}}{{../../settings.content_block_4_image}}{{~/is~}}
+                            {{~#is @index 4~}}{{../../settings.content_block_5_image}}{{~/is~}}
+                            {{~#is @index 5~}}{{../../settings.content_block_6_image}}{{~/is~}}
+                            {{~#is @index 6~}}{{../../settings.content_block_7_image}}{{~/is~}}
+                            {{#if (compare @index ">=" 7)}}{{../../settings.content_block_8_image}}{{/if}}
+                          " style="height: {{../../settings.content_block_image_height}}; width: auto;" />
+                        {{/if}}
+                        <h3>
+                          {{name}}
+                        </h3>
+                        {{#if description}}
+                          <p class="font-size-lg mb-5">
+                            {{description}}
+                          </p>
+                        {{/if}}
+                        <a class="text-inherit font-medium link-stretched underline{{#isnt ../../settings.color_content_blocks 'white'}} hover:text-{{../../settings.color_content_blocks}}{{/isnt}}" href="{{url}}">
+                          {{t 'see_more'}}
+                        </a>
+                      </li>
+                    {{/each}}
+                  {{/if}}
+                {{/each}}
+              </ul>
+            {{/is}}
+
+            {{! Tree style }}
+            {{#is settings.content_block_style '3-tree'}}
+              {{#each categories}}
+                <div class="py-4 {{#is (calc @index '%' 2) 0}}category-odd{{else}}category-even{{/is}}">
+                  <h2 class="h1 text-{{../settings.content_block_alignment}} border-bottom pb-5 mb-3">
+                    <a class="text-inherit hover:no-underline" href="{{url}}">
+                      {{name}}
+                    </a>
+                  </h2>
+                  {{#if sections}}
+                    <ul class="row list-unstyled">
+                      {{#each sections}}
+                        <li class="col-12 mb-4{{~#is ../../settings.article_list_columns '1'}} md:col-6 xl:col-4{{/is~}}" id="section-{{id}}">
+                          <h3>
+                            <a class="text-inherit" href="{{url}}">
+                              {{name}}
+                            </a>
+                          </h3>
+                          {{#if articles}}
+                            <div id="article-list-{{id}}">
+                              {{#if (compare ../../settings.article_list_style '<=' '8')}}
+
+                                {{! Built-in article list }}
+                                <ul class="row
+                                  {{~#is ../../settings.article_list_style '1-bullet'}} row-flush list-disc{{else}} row-sm list-unstyled{{/is~}}
+                                  {{~#is ../../settings.article_list_style '3-bordered'}} mt-4 mb-6{{/is~}}">
+                                  {{~#each articles}}
+                                    <li class="col-12
+                                      {{~#if (compare ../../../settings.article_list_columns ">=" "2")}} md:col-6{{/if~}}
+                                      {{~#if (compare ../../../settings.article_list_columns ">=" "3")}} lg:col-4{{/if~}}
+                                      {{~#is ../../../settings.article_list_style '3-bordered'}} -mb-1px{{/is~}}">
+                                      <div class="relative media align-items-baseline py-{{#is ../../../settings.article_list_style '3-bordered'}}5{{else}}3{{/is}} h-full
+                                        {{~#is ../../../settings.article_list_style '1-bullet'}} pr-7{{/is~}}
+                                        {{~#is ../../../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}
+                                        {{~#isnt ../../../settings.article_list_excerpt 0}} font-semibold{{/isnt~}}
+                                        {{~#is ../../../settings.article_list_style '3-bordered'}} border-top border-bottom{{#is ../../../settings.article_list_columns "1"}}{{#if @last}} border-bottom-0{{/if}}{{/is}}{{/is~}}">
+                                        {{~#is ../../../settings.article_list_style '3-bordered'}}
+                                          <div class="flex" x-data="{ src: Theme.assets['article'] }">
+                                            <template x-if="src">
+                                              <img class="svg-icon mr-3" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                                            </template>
+                                          </div>
+                                        {{/is~}}
+                                        <div class="media-body">
+                                          <a class="link-stretched flex align-items-baseline justify-content-between text-inherit font-size-lg transition-fast
+                                            {{~#is ../../../settings.promoted_article_list_style '3-bordered'}} font-medium hover:no-underline{{/is~}}
+                                            {{~#is ../../../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}" href="{{url}}">
+                                            <span class="w-full">
+                                              {{title}}
+                                              {{~#is ../../../settings.promoted_article_style 'icon'}}
+                                                {{~#if promoted}}
+                                                  <svg class="svg-icon ml-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426 405" aria-hidden="true">
+                                                    <title>{{t 'promoted'}}</title>
+                                                    <use xlink:href="#icon-star" />
+                                                  </svg>
+                                                {{/if~}}
+                                              {{/is~}}
+                                            </span>
+                                            {{#is ../../../settings.article_list_style '3-bordered'}}
+                                              {{~#if (compare ../../../settings.article_list_columns "<=" "3")}}
+                                                <svg class="svg-icon fill-current text-gray-500 ml-1" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg">
+                                                  <polygon fill-rule="nonzero" points="0.292893 22.292893 1.70710656 23.7071066 13.413544 12.0006691 1.72859119 0.293563 0.313038936 1.7064366 10.5864556 11.9993305"></polygon>
+                                                </svg>
+                                              {{/if~}}
+                                            {{/is~}}
+                                          </a>
+                                          {{~#isnt ../../../settings.article_list_excerpt 0}}
+                                            <p class="my-2 font-size-md break-words font-normal">
+                                              {{excerpt body characters=../../../settings.article_list_excerpt}}
+                                            </p>
+                                          {{/isnt~}}
+                                        </div>
+                                      </div>
+                                    </li>
+                                  {{/each~}}
+                                </ul>
+                                {{#if more_articles}}
+                                  <p class="{{~#is ../../settings.article_list_style '3-bordered'}}text-right{{/is}}">
+                                    <a class="text-base hover:no-underline" href="{{url}}">
+                                      {{t 'show_all_articles' count=article_count}}
+                                    </a>
+                                  </p>
+                                {{/if}}
+                              {{else}}
+
+                                {{! Custom article list micro-template }}
+                                <script type="text/javascript">
+                                  ready(function() {
+                                    new Navigation(document.getElementById('article-list-{{id}}'), {
+                                      collection: Theme.contentBlocks || {},
+                                      template: 'articles',
+                                      sectionId: {{id}}{{#if more_articles}},
+                                      templateData: {
+                                        showAll: "{{t 'show_all_articles' count=article_count}}",
+                                      }{{/if}}
+                                    });
+                                  })
+                                </script>
+                              {{/if}}
+                            </div>
+                          {{else}}
+                            <p class="mt-5">
+                              <a href="{{url}}">
+                                {{t 'empty'}}
+                              </a>
+                            </p>
+                          {{/if}}
+                        </li>
+                      {{/each}}
+                    </ul>
+                  {{else}}
+                    <p class="mt-5">
+                      <a href="{{url}}">
+                        {{t 'empty'}}
+                      </a>
+                    </p>
+                  {{/if}}
+                </div>
+              {{/each}}
+            {{/is}}
+
+          {{else}}
+
+            {{! Custom micro-template }}
+            <script type="text/javascript">
+              ready(function() {
+                new Navigation(document.getElementById('content-blocks'), {
+                  collection: Theme.contentBlocks,
+                  template: 'content-blocks',
+                  templateData: {
+                    images: [
+                      "{{settings.content_block_1_image}}", "{{settings.content_block_2_image}}", "{{settings.content_block_3_image}}", "{{settings.content_block_4_image}}",
+                      "{{settings.content_block_5_image}}", "{{settings.content_block_6_image}}", "{{settings.content_block_7_image}}", "{{settings.content_block_8_image}}"
+                    ],
+                    imageHeight: "{{settings.content_block_image_height}}",
+                    numberColumns: {{settings.number_content_block_columns}},
+                    alignment: "{{settings.content_block_alignment}}",
+                    color: "{{settings.color_content_blocks}}"
+                  }
+                });
+              })
+            </script>
+          {{/if}}
+
+          {{pagination}}
+
+        </div>
+      </div>
+    {{/is}}
+  {{/isnt}}
+
+  {{#isnt settings.promoted_article_list_style 'none'}}
+    {{#isnt settings.content_block_style '1-tabs'}}
+      {{!-----------------
+         Promoted articles
+         -----------------}}
+      <div class="promoted-articles{{#is settings.promoted_article_list_position 'before'}} flex-first{{/is}}" id="promoted-articles">
+        <div class="container text-{{settings.promoted_articles_alignment}} py-4">
+          {{#if (compare settings.promoted_article_list_style '<=' '8')}}
+
+            {{! Built-in styles }}
+            {{~#if settings.promoted_articles_heading}}
+              <h2 class="inline-flex align-items-baseline mt-6" x-data="{ src: Theme.assets['promoted-articles-heading'] }">
+                <template x-if="src">
+                  <img class="svg-icon mr-2" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                </template>
+                {{~#if settings.use_translations}}
+                  {{dc settings.promoted_articles_heading}}
+                {{else}}
+                  {{settings.promoted_articles_heading}}
+                {{/if~}}
+              </h2>
+            {{/if~}}
+
+            {{#if promoted_articles}}
+              <ul class="row
+                {{~#is settings.promoted_article_list_style '1-bullet'}} row-flush list-disc{{else}} row-sm list-unstyled{{/is~}}
+                {{~#is settings.promoted_article_list_style '3-bordered'}} mt-4 mb-6{{/is~}}">
+                {{~#each promoted_articles}}
+                  <li class="col-12
+                    {{~#if (compare ../settings.promoted_article_list_columns ">=" "2")}} md:col-6{{/if~}}
+                    {{~#if (compare ../settings.promoted_article_list_columns ">=" "3")}} lg:col-4{{/if~}}
+                    {{~#is ../settings.promoted_article_list_style '3-bordered'}} -mb-1px{{/is~}}">
+                    <div class="relative media align-items-baseline py-{{#is ../settings.promoted_article_list_style '3-bordered'}}5{{else}}3{{/is}} h-full
+                      {{~#is ../settings.promoted_article_list_style '1-bullet'}} pr-7{{/is~}}
+                      {{~#isnt ../settings.promoted_article_list_excerpt 0}} font-semibold{{/isnt~}}
+                      {{~#is ../settings.promoted_article_list_style '3-bordered'}} border-top border-bottom{{#is ../settings.promoted_article_list_columns "1"}}{{#if @last}} border-bottom-0{{/if}}{{/is}}{{/is~}}">
+                      {{~#is ../settings.promoted_article_list_style '3-bordered'}}
+                        <div class="flex" x-data="{ src: Theme.assets['article'] }">
+                          <template x-if="src">
+                            <img class="svg-icon mr-3" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                          </template>
+                        </div>
+                      {{/is~}}
+                      <div class="media-body">
+                        <a class="link-stretched flex align-items-baseline justify-content-between text-inherit font-size-lg transition-fast
+                          {{~#is ../settings.promoted_article_list_style '3-bordered'}} font-medium hover:no-underline{{/is~}}
+                          {{~#is ../settings.promoted_article_list_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}" href="{{url}}">
+                          <span class="w-full">{{title}}</span>
+                          {{#is ../settings.promoted_article_list_style '3-bordered'}}
+                            {{~#if (compare ../settings.promoted_article_list_columns "<=" "3")}}
+                              {{~#is ../settings.promoted_articles_alignment 'left'}}
+                                <svg class="svg-icon fill-current text-gray-500 ml-1" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg">
+                                  <polygon fill-rule="nonzero" points="0.292893 22.292893 1.70710656 23.7071066 13.413544 12.0006691 1.72859119 0.293563 0.313038936 1.7064366 10.5864556 11.9993305"></polygon>
+                                </svg>
+                              {{/is~}}
+                            {{/if~}}
+                          {{/is~}}
+                        </a>
+                        {{~#isnt ../settings.promoted_article_list_excerpt 0}}
+                          <p class="my-2 font-size-md break-words font-normal">
+                            {{excerpt body characters=../settings.promoted_article_list_excerpt}}
+                          </p>
+                        {{/isnt~}}
+                      </div>
+                    </div>
+                  </li>
+                {{/each~}}
+              </ul>
+            {{else}}
+              <p>
+                {{t 'empty'}}
+              </p>
+            {{/if~}}
+          {{else}}
+
+            {{! Custom micro-template }}
+            <script type="text/javascript">
+              ready(function() {
+                Util.renderTemplate(document.getElementById('promoted-articles'), 'promoted-articles', Theme.promotedArticles);
+              });
+            </script>
+          {{/if}}
+        </div>
+      </div>
+    {{/isnt}}
+  {{/isnt}}
+
+  {{#if settings.promoted_video_ids}}
+    {{!-------------
+       Video Library
+       -------------}}
+    <div class="video-library">
+      <div class="container py-4">
+        {{~#if settings.promoted_videos_heading}}
+          <h2 class="inline-flex align-items-baseline my-4" x-data="{ src: Theme.assets['promoted-videos-heading'] }">
+            <template x-if="src">
+              <img class="svg-icon mr-2" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+            </template>
+            {{~#if settings.use_translations}}
+              {{dc settings.promoted_videos_heading}}
+            {{else}}
+              {{settings.promoted_videos_heading}}
+            {{/if~}}
+          </h2>
+        {{/if~}}
+        <div class="relative overflow-hidden" data-element="video-library" data-layout="carousel" data-template="video-library" data-play-inline="false" data-ids="{{settings.promoted_video_ids}}"></div>
+      </div>
+    </div>
+  {{/if}}
+
+  {{~#isnt settings.recent_activity 'none'}}
+    {{!---------------
+       Recent activity
+       ---------------}}
+    <div class="recent-activity">
+      <div class="container py-4">
+        {{~#is settings.recent_activity 'community'}}
+          {{recent_activity scope='community'}}
+        {{else}}
+          {{recent_activity}}
+        {{/is~}}
+      </div>
+    </div>
+  {{/isnt~}}
+
+  {{#isnt settings.contact_block_style 'none'}}
+    {{!--------------
+       Contact blocks
+       --------------}}
+    <div class="contact-blocks" id="contact-blocks">
+      <script type="text/javascript">
+        ready(function() {
+          Util.renderTemplate(document.getElementById('contact-blocks'), 'contact-blocks', Theme.contactBlocks);
+        })
+      </script>
+    </div>
+  {{/isnt}}
+
+</div> {{! /#page-container }}
+
+{{~#isnt settings.cta_style 'none'}}
+  {{~#isnt settings.cta_style 'sidebar'}}
+    {{~#isnt settings.cta_location 'internal'}}
+      {{!--------------
+         Call-to-action
+         --------------}}
+      <div data-element="template" data-template="call-to-action"></div>
+    {{/isnt~}}
+  {{/isnt~}}
+{{/isnt~}}
+
+<script type="text/javascript">
+  {{! Category and section image assets }}
+  {{~#each categories}}
+    {{~#if (asset id prefix='category-' suffix='.svg')~}}Theme.assets['category-{{id}}'] = "{{asset id prefix='category-' suffix='.svg'}}";{{~/if~}}
+    {{~#if (asset id prefix='category-' suffix='.png')~}}Theme.assets['category-{{id}}'] = "{{asset id prefix='category-' suffix='.png'}}";{{~/if~}}
+    {{~#if (asset id prefix='category-' suffix='.jpg')~}}Theme.assets['category-{{id}}'] = "{{asset id prefix='category-' suffix='.jpg'}}";{{~/if~}}
+    {{~#if (asset id prefix='category-' suffix='.jpeg')~}}Theme.assets['category-{{id}}'] = "{{asset id prefix='category-' suffix='.jpeg'}}";{{~/if~}}
+    {{~#each sections}}
+      {{~#if (asset id prefix='section-' suffix='.svg')~}}Theme.assets['section-{{id}}'] = "{{asset id prefix='section-' suffix='.svg'}}";{{~/if~}}
+      {{~#if (asset id prefix='section-' suffix='.png')~}}Theme.assets['section-{{id}}'] = "{{asset id prefix='section-' suffix='.png'}}";{{~/if~}}
+      {{~#if (asset id prefix='section-' suffix='.jpg')~}}Theme.assets['section-{{id}}'] = "{{asset id prefix='section-' suffix='.jpg'}}";{{~/if~}}
+      {{~#if (asset id prefix='section-' suffix='.jpeg')~}}Theme.assets['section-{{id}}'] = "{{asset id prefix='section-' suffix='.jpeg'}}";{{~/if~}}
+    {{~/each~}}
+  {{~/each~}}
+
+  {{! Category/section data for custom templates }}
+  {{~#isnt settings.content_block_style 'none'}}
+    {{~#unless (compare settings.content_block_style '<=' '8')}}
+      Theme.contentBlocks = { categories: [], sections: [], articles: [] };
+      {{~#each categories~}}
+        Theme.contentBlocks.categories.push({
+          id: {{id}},
+          name: {{json_stringify name}},
+          {{~#if description}}description: {{json_stringify description}},{{/if~}}
+          html_url: {{json_stringify url}}
+        });
+        {{~#each sections~}}
+          Theme.contentBlocks.sections.push({
+            id: {{id}},
+            category_id: {{../id}},
+            parent_section_id: null,
+            name: {{json_stringify name}},
+            {{~#if description}}description: {{json_stringify description}},{{/if~}}
+            html_url: {{json_stringify url}},
+            {{~#if article_count}}article_count: {{article_count}},{{/if~}}
+            {{~#if more_articles}}view_all_articles: {{json_stringify (t 'show_all_articles' count=article_count)}},{{/if~}}
+          });
+          {{~#each articles~}}
+            Theme.contentBlocks.articles.push({
+              id: {{id}},
+              section_id: {{../id}},
+              title: {{json_stringify title}},
+              {{~#if body}}{{#if ../../../settings.article_list_excerpt}}body: {{json_stringify (excerpt body characters=../../../settings.article_list_excerpt)}},{{/if}}{{/if~}}
+              html_url: {{json_stringify url}},
+              created_at: "{{created_at}}",
+              {{~#isnt created_at edited_at}}edited_at: "{{edited_at}}",{{/isnt~}}
+              {{~#if promoted}}promoted: {{promoted}},{{/if~}}
+              {{~#if internal}}internal: {{internal}},{{/if~}}
+              {{~#if comment_count}}comment_count: {{comment_count}},{{/if~}}
+              {{~#if vote_count}}vote_count: {{vote_count}},{{/if~}}
+              author: { name: {{json_stringify author.name}},{{~#if author.url}} html_url: {{json_stringify author.url}},{{/if~}}avatar_url: {{json_stringify author.avatar_url}}, agent: {{author.agent}} }
+            });
+          {{/each}}
+        {{/each}}
+      {{/each}}
+    {{/unless~}}
+  {{/isnt~}}
+
+  {{! Promoted article data for custom templates }}
+  {{~#isnt settings.promoted_article_list_style 'none'}}
+    {{~#unless (compare settings.promoted_article_list_style '<=' '8')}}
+    Theme.promotedArticles = {
+      articles: [{{~#each promoted_articles~}}{
+        id: {{id}},
+        title: {{json_stringify title}},
+        {{#if body}}body: {{#isnt ../settings.promoted_article_list_excerpt 0}}{{json_stringify (excerpt body)}}{{else}}{{json_stringify body}}{{/isnt}},{{/if}}
+        html_url: {{json_stringify url}},
+        created_at: "{{created_at}}",
+        {{~#isnt created_at edited_at}}edited_at: "{{edited_at}}",{{/isnt~}}
+        {{~#if internal}}internal: {{internal}},{{/if~}}
+        {{~#if comment_count}}comment_count: {{comment_count}},{{/if~}}
+        {{~#if vote_count}}vote_count: {{vote_count}},{{/if~}}
+        author: { name: {{json_stringify author.name}},{{#if author.url}} html_url: {{json_stringify author.url}},{{/if}} avatar_url: {{json_stringify author.avatar_url}}, agent: {{author.agent}} }
+      }{{#unless @last}},{{/unless}}{{~/each~}}]
+    };
+    {{/unless~}}
+  {{/isnt~}}
+</script>
+
+<script type="text/javascript">document.documentElement.classList.add('home-page')</script>

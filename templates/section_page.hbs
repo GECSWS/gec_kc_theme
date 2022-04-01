@@ -1,0 +1,248 @@
+{{!------------
+   Hero element
+   ------------}}
+<div class="hero relative overflow-hidden{{#is settings.hero_image_style 'standard'}} bg-home bg-cover bg-center{{/is}}">
+
+  {{!--------------------
+     Hero element content
+     --------------------}}
+  <div class="relative container z-30{{#if settings.fixed_header}} mt-6{{/if}} py-6 lg:py-7">
+
+    {{!-----------------------
+       Hero element search bar
+       -----------------------}}
+    <div class="search search-lg{{#if settings.search_translucent}} search-translucent blur{{/if}} font-size-lg lg:font-size-xl text-base my-4{{#is settings.hero_content_alignment 'center'}} mx-auto{{/is}}">
+      <h2 class="sr-only">{{ t 'search' }}</h2>
+      {{~#if settings.search_placeholder}}
+        {{#if settings.use_translations}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=(dc settings.search_placeholder)}}
+        {{else}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=settings.search_placeholder}}
+        {{/if}}
+      {{else}}
+        {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button}}
+      {{/if~}}
+      <svg class="search-icon transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </div>
+  </div>
+
+  {{#isnt settings.hero_image_style 'standard'}}
+    {{#isnt settings.hero_image_style 'parallax'}}
+      {{!-------------------------------
+         Hero background image (overlay)
+         -------------------------------}}
+      <div class="absolute z-20 top-0 left-0 h-full w-full bg-home{{#is settings.hero_image_style 'overlay'}} bg-cover bg-center{{/is}}{{#is settings.hero_image_style 'overlay-pattern'}} bg-repeat{{/is}}"></div>
+    {{/isnt}}
+  {{/isnt}}
+
+  {{!---------------------
+     Hero background color
+     ---------------------}}
+  <div class="absolute z-10 top-0 left-0 h-full w-full bg-hero"></div>
+
+  {{#is settings.hero_image_style 'parallax'}}
+    {{!--------------------------------
+       Hero background image (parallax)
+       --------------------------------}}
+    <div class="absolute z-0 top-0 left-0 w-full h-full">
+      <div class="relative w-full h-full overflow-hidden">
+        <div class="absolute top-0 left-0 w-full bg-home bg-cover bg-center" x-data="Widgets.parallaxImage" style="height: 150%"></div>
+      </div>
+    </div>
+  {{/is}}
+
+</div> {{! /.hero }}
+
+{{!---------
+   Subheader
+   ---------}}
+<div class="shadow-xs pt-5">
+  <div class="container">
+    <nav class="pb-2">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</div>
+
+<div class="container" id="page-container">
+  <div class="row row-lg my-6">
+    <div class="col">
+
+      {{!--------------
+         Section header
+         --------------}}
+      <header class="sm:flex flex-wrap justify-content-between">
+        <h1 class="w-full">
+          {{section.name}}
+        </h1>
+        {{#if section.description}}
+          <p class="font-size-xl font-light text-gray-600">
+            {{section.description}}
+          </p>
+        {{/if}}
+
+        {{! Subscribe link }}
+        {{#if settings.show_follow_section}}
+          <div class="subscribe-section mb-4">
+            {{subscribe}}
+          </div>
+        {{/if}}
+      </header>
+
+      <div class="row">
+        <div class="col-12{{#is settings.article_list_columns '1'}}{{#is settings.section_sidebar 'none'}} lg:col-9{{/is}}{{/is}}">
+
+          {{!---------------
+             Subsection list
+             ---------------}}
+          {{#if section.sections}}
+            <ul class="list-unstyled list-bordered border-top border-bottom my-6">
+              {{#each section.sections}}
+                <li class="bg-white">
+                  <h3 class="my-0">
+                    <a class="flex align-items-center justify-content-between py-4 text-inherit" href="{{url}}">
+                      {{name}}
+                      <svg class="fill-current pointer-events-none rotate-270 ml-3" width="14px" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,19.5 C19.4,19.5 18.9,19.3 18.4,18.9 L1.4,4.9 C0.3,4 0.2,2.4 1.1,1.4 C2,0.3 3.6,0.2 4.6,1.1 L20,13.8 L35.5,1.1 C36.6,0.2 38.1,0.4 39,1.4 C39.9,2.5 39.7,4 38.7,4.9 L21.7,18.9 C21.1,19.3 20.5,19.5 20,19.5 Z" fill-rule="nonzero"></path>
+                      </svg>
+                    </a>
+                  </h3>
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          {{pagination "section.sections"}}
+
+          {{!------------
+             Article list
+             ------------}}
+          {{#if section.articles}}
+
+            {{~#if section.sections}}
+              <h2 class="mt-6 h3">
+                {{t 'articles'}}
+              </h2>
+            {{/if~}}
+
+            <div id="article-list-{{section.id}}">
+              {{#if (compare settings.article_list_style '<=' '8')}}
+
+                {{! Built-in article list }}
+                <ul class="row
+                  {{~#is settings.article_list_style '1-bullet'}} row-flush list-disc{{else}} row-sm list-unstyled{{/is~}}
+                  {{~#is settings.article_list_style '3-bordered'}} my-6{{/is~}}">
+                  {{~#each section.articles}}
+                    <li class="col-12
+                      {{~#if (compare ../settings.article_list_columns ">=" "2")}} md:col-6{{/if~}}
+                      {{~#if (compare ../settings.article_list_columns ">=" "3")}} lg:col-4{{/if~}}
+                      {{~#is ../settings.article_list_style '3-bordered'}} -mb-1px{{/is~}}">
+                      <div class="relative media align-items-baseline py-{{#is ../settings.article_list_style '3-bordered'}}5{{else}}3{{/is}} h-full
+                        {{~#is ../settings.article_list_style '1-bullet'}} pr-7{{/is~}}
+                        {{~#is ../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}
+                        {{~#isnt ../settings.article_list_excerpt 0}} font-semibold{{/isnt~}}
+                        {{~#is ../settings.article_list_style '3-bordered'}} border-top border-bottom{{#is ../settings.article_list_columns "1"}}{{#if @last}} border-bottom-0{{/if}}{{/is}}{{/is~}}">
+                        {{~#is ../settings.article_list_style '3-bordered'}}
+                          <div class="flex" x-data="{ src: Theme.assets['article'] }">
+                            <template x-if="src">
+                              <img class="svg-icon mr-3" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
+                            </template>
+                          </div>
+                        {{/is~}}
+                        <div class="media-body">
+                          <a class="link-stretched flex align-items-baseline justify-content-between text-inherit font-size-lg transition-fast
+                            {{~#is ../settings.promoted_article_list_style '3-bordered'}} font-medium hover:no-underline{{/is~}}
+                            {{~#is ../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}" href="{{url}}">
+                            <span class="w-full">
+                              {{title}}
+                              {{~#is ../settings.promoted_article_style 'icon'}}
+                                {{~#if promoted}}
+                                  <svg class="svg-icon ml-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426 405" aria-hidden="true">
+                                    <title>{{t 'promoted'}}</title>
+                                    <use xlink:href="#icon-star" />
+                                  </svg>
+                                {{/if~}}
+                              {{/is~}}
+                            </span>
+                            {{#is ../settings.article_list_style '3-bordered'}}
+                              {{~#if (compare ../settings.article_list_columns "<=" "3")}}
+                                <svg class="svg-icon fill-current text-gray-500 ml-1" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg">
+                                  <polygon fill-rule="nonzero" points="0.292893 22.292893 1.70710656 23.7071066 13.413544 12.0006691 1.72859119 0.293563 0.313038936 1.7064366 10.5864556 11.9993305"></polygon>
+                                </svg>
+                              {{/if~}}
+                            {{/is~}}
+                          </a>
+                          {{~#isnt ../settings.article_list_excerpt 0}}
+                            <p class="my-2 font-size-md break-words font-normal">
+                              {{excerpt body characters=../settings.article_list_excerpt}}
+                            </p>
+                          {{/isnt~}}
+                        </div>
+                      </div>
+                    </li>
+                  {{/each~}}
+                </ul>
+              {{else}}
+
+                {{! Custom article list micro-template }}
+                <script type="text/javascript">
+                  ready(function() {
+                    new Navigation(document.getElementById('article-list-{{section.id}}'), {
+                      collection: Theme.contentBlocks || {},
+                      template: 'articles',
+                      sectionId: {{section.id}}
+                    });
+                  })
+                </script>
+              {{/if}}
+            </div>
+          {{else}}
+            {{#unless section.sections}}
+              <p class="mt-5">
+                <a href="{{section.url}}">
+                  {{t 'empty'}}
+                </a>
+              </p>
+            {{/unless}}
+          {{/if}}
+
+          {{pagination "section.articles"}}
+
+        </div>
+      </div>
+
+    </div>
+
+    {{~#isnt settings.section_sidebar 'none'}}
+      {{!------------------
+         Sidebar navigation
+         ------------------}}
+      <aside class="relative flex-first lg:col lg:mr-6 lg:max-w-12 lg:border-right" data-element="navigation" data-template="{{#is settings.section_sidebar 'custom'}}sidebar-navigation{{else}}{{settings.section_sidebar}}{{/is}}"></aside>
+    {{/isnt~}}
+
+    {{~#is settings.cta_style 'sidebar'}}
+      {{~#isnt settings.cta_location 'home'}}
+        {{!--------------
+           Call-to-action
+           --------------}}
+        <aside class="md:col {{#is settings.section_sidebar 'none'}}md:max-w-13{{else}}md:max-w-12{{/is}}" data-element="template" data-template="call-to-action"></aside>
+      {{/isnt~}}
+    {{/is~}}
+
+  </div> {{! /.row }}
+</div> {{! /#page-container }}
+
+{{~#isnt settings.cta_style 'none'}}
+  {{~#isnt settings.cta_style 'sidebar'}}
+    {{~#isnt settings.cta_location 'home'}}
+      {{!--------------
+         Call-to-action
+         --------------}}
+      <div data-element="template" data-template="call-to-action"></div>
+    {{/isnt~}}
+  {{/isnt~}}
+{{/isnt~}}
+
+<script type="text/javascript">document.documentElement.classList.add('section-page', 'section-' + {{section.id}})</script>

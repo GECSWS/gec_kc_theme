@@ -1,0 +1,676 @@
+{{!------------
+   Hero element
+   ------------}}
+<div class="hero relative overflow-hidden{{#is settings.hero_image_style 'standard'}} bg-home bg-cover bg-center{{/is}}">
+
+  {{!--------------------
+     Hero element content
+     --------------------}}
+  <div class="relative container z-30{{#if settings.fixed_header}} mt-6{{/if}} py-6 lg:py-7">
+
+    {{!-----------------------
+       Hero element search bar
+       -----------------------}}
+    <div class="search search-lg{{#if settings.search_translucent}} search-translucent blur{{/if}} font-size-lg lg:font-size-xl text-base my-4{{#is settings.hero_content_alignment 'center'}} mx-auto{{/is}}">
+      <h2 class="sr-only">{{ t 'search' }}</h2>
+      {{~#if settings.search_placeholder}}
+        {{#if settings.use_translations}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=(dc settings.search_placeholder)}}
+        {{else}}
+          {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button placeholder=settings.search_placeholder}}
+        {{/if}}
+      {{else}}
+        {{search class='form-field mb-0' instant=settings.instant_search scoped=settings.scoped_kb_search submit=settings.show_search_button}}
+      {{/if~}}
+      <svg class="search-icon transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </div>
+  </div>
+
+  {{#isnt settings.hero_image_style 'standard'}}
+    {{#isnt settings.hero_image_style 'parallax'}}
+      {{!-------------------------------
+         Hero background image (overlay)
+         -------------------------------}}
+      <div class="absolute z-20 top-0 left-0 h-full w-full bg-home{{#is settings.hero_image_style 'overlay'}} bg-cover bg-center{{/is}}{{#is settings.hero_image_style 'overlay-pattern'}} bg-repeat{{/is}}"></div>
+    {{/isnt}}
+  {{/isnt}}
+
+  {{!---------------------
+     Hero background color
+     ---------------------}}
+  <div class="absolute z-10 top-0 left-0 h-full w-full bg-hero"></div>
+
+  {{#is settings.hero_image_style 'parallax'}}
+    {{!--------------------------------
+       Hero background image (parallax)
+       --------------------------------}}
+    <div class="absolute z-0 top-0 left-0 w-full h-full">
+      <div class="relative w-full h-full overflow-hidden">
+        <div class="absolute top-0 left-0 w-full bg-home bg-cover bg-center" x-data="Widgets.parallaxImage" style="height: 150%"></div>
+      </div>
+    </div>
+  {{/is}}
+
+</div> {{! /.hero }}
+
+{{!---------
+   Subheader
+   ---------}}
+<div class="shadow-xs pt-5">
+  <div class="container">
+    <nav class="pb-2">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</div>
+
+<div class="container" id="page-container">
+  <div class="row row-lg my-6">
+
+    <article class="col" itemscope itemtype="http://schema.org/Article">
+
+      {{!--------------
+         Article header
+         --------------}}
+      <header class="mb-5">
+        <h1 title="{{article.title}}" itemprop="name">
+          {{article.title}}
+          {{#if article.internal}}
+            <svg class="svg-icon text-base font-size-xl ml-1 mb-1" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 16 16">
+              <title>{{t 'internal'}}</title>
+              <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+              <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+            </svg>
+          {{/if}}
+        </h1>
+
+        {{!----------------
+           Article metadata
+           ----------------}}
+        <div class="flex{{#is settings.article_metadata 'none'}}{{#unless settings.show_follow_article}} hidden{{/unless}}{{/is}}">
+          <div class="media">
+            {{#is settings.article_metadata 'author'}}
+              <div class="avatar">
+                {{#if article.author.agent}}
+                  <svg class="svg-icon absolute bottom-0 right-0 text-primary bg-white border border-white circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true">
+                    <use xlink:href="#icon-agent" />
+                  </svg>
+                {{/if}}
+                <img class="avatar-img" alt="{{article.author.name}}" src="{{article.author.avatar_url}}">
+              </div>
+            {{/is}}
+            {{#isnt settings.article_metadata 'none'}}
+              <div class="media-body font-size-md align-self-center{{#is settings.article_metadata 'date-end'}}{{#unless comments}} hidden{{/unless}}{{/is}}">
+                {{#is settings.article_metadata 'author'}}
+                  {{#link 'user_profile' class="link-implied" id=article.author.id}}
+                    {{article.author.name}}
+                  {{/link}}
+                  {{#each article.author.badges}}
+                    {{#is category_slug "titles"}}
+                      <span class="badge bg-primary text-primary-inverse py-1 pr-2 mx-2" title="{{description}}" aria-label="{{name}}">
+                        {{#if icon_url}}
+                          <img src="{{icon_url}}" alt="{{description}}" />
+                        {{/if}}
+                        {{name}}
+                      </span>
+                    {{/is}}
+                  {{/each}}
+                  {{#each article.author.badges}}
+                    {{#is category_slug "achievements"}}
+                      {{#if icon_url}}
+                        <img width="22" height="22" src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" aria-label="{{name}}" />
+                      {{/if}}
+                    {{/is}}
+                  {{/each}}
+                {{/is}}
+                <ul class="list-divider">
+                  {{#isnt settings.article_metadata 'date-end'}}
+                    <li class="text-gray-600">
+                      {{#is article.created_at article.edited_at}}
+                        {{date article.created_at timeago=true}}
+                      {{else}}
+                        {{t 'updated'}}
+                        {{date article.edited_at timeago=true}}
+                      {{/is}}
+                    </li>
+                  {{/isnt}}
+                  {{#if settings.show_article_comments}}
+                    {{#if comments}}
+                      <li class="text-gray-600">
+                        <a href="#comments">
+                          {{t 'comments_count' count=article.comment_count}}
+                        </a>
+                      </li>
+                    {{/if}}
+                  {{~/if}}
+                </ul>
+              </div>
+            {{/isnt}}
+
+            {{#if settings.show_follow_article}}
+              {{! Subscribe link }}
+              <div class="subscribe-article">
+                {{subscribe}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+
+      </header>
+
+      {{!-------------------------------
+         Article content and attachments
+         -------------------------------}}
+      <section class="content article-content mb-6" itemprop="articleBody">
+
+        {{~#isnt settings.table_of_contents_style 'none'}}
+          {{~#isnt settings.table_of_contents_style 'sidebar-left'}}
+            {{~#isnt settings.table_of_contents_style 'sidebar-right'}}
+              {{!-----------------
+                 Table of Contents
+                 -----------------}}
+              <div id="table-of-contents" data-element="table-of-contents" data-template="table-of-contents" data-selector=".content h2"></div>
+            {{/isnt~}}
+          {{/isnt~}}
+        {{/isnt~}}
+
+        {{! Article content and attachments }}
+        {{article.body}}
+
+        {{#if attachments}}
+          <ul class="list-unstyled my-6">
+            {{#each attachments}}
+              <li class="list-item">
+                <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" d="M9.5 4v7.7c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5V3C6.5 1.6 7.6.5 9 .5s2.5 1.1 2.5 2.5v9c0 1.9-1.6 3.5-3.5 3.5S4.5 13.9 4.5 12V4"/>
+                </svg>
+                <a class="mr-2" href="{{url}}" target="_blank">{{name}}</a><span class="font-size-md text-gray-600">{{size}}</span>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        {{#is settings.article_metadata 'date-end'}}
+          {{! Article metadata }}
+          <p class="text-gray-600 mt-6">
+            {{#is article.created_at article.edited_at}}
+              {{date article.created_at timeago=true}}
+            {{else}}
+              {{t 'updated'}}
+              {{date article.edited_at timeago=true}}
+            {{/is}}
+          </p>
+        {{/is}}
+
+      </section>
+
+      {{~#isnt settings.article_navigation_style 'none'}}
+        {{!------------------
+           Article navigation
+           ------------------}}
+        <div
+          class="my-6"
+          data-element="article-navigation"
+          data-template="article-navigation"
+          data-next-title="{{#if settings.use_translations}}{{dc settings.next_article_title}}{{else}}{{settings.next_article_title}}{{/if}}"
+          data-previous-title="{{#if settings.use_translations}}{{dc settings.previous_article_title}}{{else}}{{settings.previous_article_title}}{{/if}}">
+        </div>
+      {{/isnt~}}
+
+      {{~#if settings.show_article_voting}}
+        {{!--------------
+           Article voting
+           --------------}}
+        {{#with article}}
+          <div class="flex align-items-center py-4 my-6 border-top border-bottom">
+            <h4 class="font-medium my-4">
+              {{t 'was_this_article_helpful'}}
+            </h4>
+            <div class="ml-3" role="group">
+              {{vote 'up' class='button button-outline-primary mx-1 my-4' selected_class='is-active' role='radio'}}
+              {{vote 'down' class='button button-outline-primary mx-1 my-4' selected_class='is-active' role='radio'}}
+            </div>
+          </div>
+        {{/with}}
+      {{/if~}}
+
+      {{!---------------------------
+         Recent and related articles
+         ---------------------------}}
+      <footer class="row my-6{{#unless settings.show_recently_viewed_articles}}{{#unless settings.show_related_articles}} hidden{{/unless}}{{/unless}}">
+        {{#if settings.show_related_articles}}
+          {{related_articles}}
+        {{/if}}
+        {{#if settings.show_recently_viewed_articles}}
+          {{recent_articles}}
+        {{/if}}
+      </footer>
+
+      {{#if settings.show_article_comments}}
+        {{!----------------
+           Article comments
+           ----------------}}
+        <section id="comments" itemscope itemtype="http://schema.org/UserComments">
+
+          {{!---------------
+             Comments header
+             ---------------}}
+          <header class="border-top border-bottom py-2">
+            <h3 class="mt-4">
+              {{t 'comments'}}
+            </h3>
+            <div class="flex justify-content-between align-items-baseline text-gray-600">
+              <p>
+                {{t 'comments_count' count=article.comment_count}}
+              </p>
+              {{#if comments}}
+
+                {{! Sorters }}
+                <div class="dropdown py-2">
+                  <button class="not-a-button dropdown-toggle" aria-haspopup="true">
+                    {{t 'sort_by'}}
+                    <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 12 12">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+                    </svg>
+                  </button>
+                  <span class="dropdown-menu" role="menu" aria-expanded="false">
+                    {{#each comment_sorters}}
+                      <a class="dropdown-item" aria-selected="{{selected}}" href="{{url}}" role="menuitem">
+                        {{name}}
+                      </a>
+                    {{/each}}
+                  </span>
+                </div>
+              {{/if}}
+            </div>
+          </header>
+
+          {{#if comments}}
+            {{!-------------
+               Comments list
+               -------------}}
+            <ul class="list-unstyled">
+              {{#each comments}}
+                <li class="comment py-5 border-bottom" id="{{anchor}}">
+
+                  {{! Comment metadata }}
+                  <div class="media mb-4">
+                    <div class="avatar">
+                      {{#if author.agent}}
+                        <svg class="svg-icon absolute bottom-0 right-0 text-primary bg-white border border-white circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true">
+                          <use xlink:href="#icon-agent" />
+                        </svg>
+                      {{/if}}
+                      <img class="avatar-img" src="{{author.avatar_url}}" alt="Comment author">
+                    </div>
+                    <div class="media-body">
+                      {{#link 'user_profile' class="link-implied" id=author.id title=author.name}}
+                        {{author.name}}
+                      {{/link}}
+                      {{#each author.badges}}
+                        {{#is category_slug "titles"}}
+                          <span class="badge bg-primary text-primary-inverse py-1 pr-2 mx-2" title="{{description}}" aria-label="{{name}}">
+                          {{#if icon_url}}
+                            <img src="{{icon_url}}" alt="{{description}}" />
+                          {{/if}}
+                            {{name}}
+                        </span>
+                        {{/is}}
+                      {{/each}}
+                      {{#each author.badges}}
+                        {{#is category_slug "achievements"}}
+                          {{#if icon_url}}
+                            <img width="22" height="22" src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" aria-label="{{name}}" />
+                          {{/if}}
+                        {{/is}}
+                      {{/each}}
+                      <ul class="list-divider">
+                        {{#if editor}}
+                          <li class="text-gray-600">
+                            {{t 'edited'}} {{date edited_at timeago=true}}
+                          </li>
+                        {{else}}
+                          <li class="text-gray-600">
+                            {{date created_at timeago=true}}
+                          </li>
+                        {{/if}}
+                      </ul>
+                    </div>
+                    <div class="actions-comment">
+                      {{#actions}}
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                          <path fill="none" stroke="currentColor" d="M13.17 3.07l-1.64.71c-.48-.4-1.03-.72-1.63-.94l-.22-1.79a.511.511 0 00-.4-.44C8.86.54 8.44.5 8 .5c-.44 0-.86.04-1.28.11-.22.04-.38.22-.4.44l-.21 1.79c-.6.22-1.15.54-1.63.94l-1.65-.71a.491.491 0 00-.58.13c-.55.65-.99 1.4-1.29 2.21-.08.21 0 .44.18.58l1.45 1.08a4.91 4.91 0 000 1.87l-1.45 1.08c-.18.13-.25.37-.18.58.3.81.74 1.55 1.28 2.2.14.17.38.22.58.13l1.65-.71c.48.4 1.03.72 1.63.94l.21 1.79c.03.22.19.4.4.44.43.07.85.11 1.29.11.44 0 .86-.04 1.28-.11.22-.04.38-.22.4-.44l.21-1.79c.6-.22 1.15-.54 1.63-.94l1.65.71c.2.09.44.04.58-.13.54-.65.98-1.39 1.28-2.2.08-.21 0-.44-.18-.57L13.4 8.95c.07-.32.1-.63.1-.95s-.03-.63-.09-.94l1.45-1.08c.18-.13.25-.37.18-.58-.3-.81-.74-1.55-1.28-2.2a.51.51 0 00-.59-.13z"/>
+                          <circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"/>
+                        </svg>
+                      {{/actions}}
+                    </div>
+                  </div>
+
+                  {{#with ticket}}
+                    <a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
+                      {{t 'request'}}{{id}}
+                    </a>
+                  {{/with}}
+                  {{#if pending}}
+                    <span class="badge badge-pending">
+                      {{t 'pending_approval'}}
+                    </span>
+                  {{/if}}
+
+                  {{! Comment content }}
+                  <section class="content">
+                    {{body}}
+                  </section>
+
+                  {{! Comment voting }}
+                  <div class="button-group button-group-sm" role="group">
+                    {{#vote 'up' class='button button-outline-primary' selected_class='is-active' role='radio'}}
+                      <svg class="svg-icon rotate-180" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 16 16">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"></path>
+                      </svg>
+                    {{/vote}}
+                    {{#vote 'down' class='button button-outline-primary' selected_class='is-active' role='radio'}}
+                      <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 16 16">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"></path>
+                      </svg>
+                    {{/vote}}
+                  </div>
+                  {{vote 'sum' class='font-size-sm text-gray-600 ml-1'}}
+
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          {{pagination}}
+
+          {{!------------
+             Comment form
+             ------------}}
+          {{#form 'comment' class='form text-right'}}
+            <div class="flex mt-4">
+              <div class="avatar">
+                {{user_avatar class='avatar-img'}}
+              </div>
+              <div class="flex-1 form-field">
+                {{wysiwyg 'body'}}
+              </div>
+            </div>
+            {{input type='submit'}}
+          {{/form}}
+
+          <p class="text-gray-600 mt-4 font-size-md">
+            {{comment_callout}}
+          </p>
+
+        </section>
+      {{/if}}
+
+    </article>
+
+    {{!-----------------
+       Left-hand sidebar
+       -----------------}}
+    <aside class="relative flex-first lg:col lg:mr-6 lg:max-w-12{{#isnt settings.article_sidebar 'none'}} lg:border-right{{/isnt}}{{#is settings.article_sidebar 'none'}}{{~#isnt settings.table_of_contents_style 'sidebar-left'}} hidden{{/isnt}}{{/is}}">
+
+      {{#isnt settings.article_sidebar 'none'}}
+        {{~#is settings.article_sidebar 'articles-in-section'}}
+          {{!------------------------
+             Articles in this section
+             ------------------------}}
+          <div class="border-top border-bottom lg:border-transparent mb-6 lg:my-5" x-data="toggle({ isOpen: false })" @collapse:show.stop="open" @collapse:hide.stop="close">
+
+            {{! Heading and toggle }}
+            <h3 class="relative flex align-items-center justify-content-between my-0 py-4 font-size-lg lg:pt-2">
+              {{t 'articles_in_section'}}
+              <a class="link-stretched text-inherit hover:text-inherit lg:hidden" href="#" data-toggle="collapse" data-target="#articles-in-section" aria-controls="articles-in-section" aria-expanded="false">
+                <svg class="fill-current pointer-events-none ml-3 lg:hidden" :class="isOpen && 'rotate-180'" width="14px" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20,19.5 C19.4,19.5 18.9,19.3 18.4,18.9 L1.4,4.9 C0.3,4 0.2,2.4 1.1,1.4 C2,0.3 3.6,0.2 4.6,1.1 L20,13.8 L35.5,1.1 C36.6,0.2 38.1,0.4 39,1.4 C39.9,2.5 39.7,4 38.7,4.9 L21.7,18.9 C21.1,19.3 20.5,19.5 20,19.5 Z" fill-rule="nonzero"></path>
+                </svg>
+              </a>
+            </h3>
+            <div class="collapse lg:expand lg:flex-column" id="articles-in-section">
+              <ul class="nav nav-pills flex-column py-3 md:py-0 md:font-size-md">
+                {{#each section.articles}}
+                  <li class="nav-item">
+                    <a class="nav-link text-inherit border-radius {{#is id ../article.id}}is-active{{else}}hover:underline{{/is}}" href="{{url}}">
+                      {{title}}
+                    </a>
+                  </li>
+                {{/each}}
+              </ul>
+              {{#if section.more_articles}}
+                <p>
+                  <a href="{{section.url}}">
+                    {{t 'show_all_articles'}}
+                  </a>
+                </p>
+              {{/if}}
+            </div>
+          </div>
+        {{else}}
+          {{!---------------
+             Navigation menu
+             ---------------}}
+          <div{{#is settings.table_of_contents_style 'sidebar-left'}} class="-mb-6"{{/is}} data-element="navigation" data-template="{{#is settings.article_sidebar 'custom'}}sidebar-navigation{{else}}{{settings.article_sidebar}}{{/is}}"></div>
+        {{/is~}}
+      {{/isnt~}}
+
+      {{~#is settings.table_of_contents_style 'sidebar-left'}}
+        {{!-----------------
+           Table of Contents
+           -----------------}}
+        <div class="hidden lg:block sticky-top" data-element="table-of-contents" data-template="sidebar-table-of-contents" data-selector=".content h2" data-spy="scroll" data-offset="{{#if settings.sticky_header}}{{settings.header_height}}{{else}}20px{{/if}}"></div>
+      {{/is~}}
+
+    </aside>
+
+    {{!------------------
+       Right-hand sidebar
+       ------------------}}
+    <aside class="md:col md:max-w-13{{#isnt settings.table_of_contents_style 'sidebar-right'}}{{~#isnt settings.cta_style 'sidebar'}} hidden{{/isnt}}{{/isnt}}" x-data="{ tableOfContents: false }">
+      <div :class="{ 'sticky-top': tableOfContents }" @table-of-contents:render.camel="tableOfContents = $event.target.children.length > 0">
+        {{~#is settings.table_of_contents_style 'sidebar-right'}}
+          {{!-----------------
+             Table of Contents
+             -----------------}}
+          <div class="hidden lg:block" data-element="table-of-contents" data-template="sidebar-table-of-contents" data-selector=".content h2" data-spy="scroll" data-offset="{{#if settings.sticky_header}}{{settings.header_height}}{{else}}20px{{/if}}"></div>
+        {{/is~}}
+
+        {{~#is settings.cta_style 'sidebar'}}
+          {{~#isnt settings.cta_location 'home'}}
+            {{!--------------
+               Call-to-action
+               --------------}}
+            <div data-element="template" data-template="call-to-action"></div>
+          {{/isnt~}}
+        {{/is~}}
+      </div>
+    </aside>
+
+  </div> {{! /.row }}
+</div> {{! /#page-container }}
+
+{{~#isnt settings.cta_style 'none'}}
+  {{~#isnt settings.cta_style 'sidebar'}}
+    {{~#isnt settings.cta_location 'home'}}
+      {{!--------------
+         Call-to-action
+         --------------}}
+      <div data-element="template" data-template="call-to-action"></div>
+    {{/isnt~}}
+  {{/isnt~}}
+{{/isnt~}}
+
+<script type="text/javascript">document.documentElement.classList.add('article-page', 'article-' + {{article.id}})</script>
+
+{{!---------------
+   Micro-templates
+   ---------------}}
+{{~#is settings.article_navigation_style 'standard'}}
+  {{!------------------
+     Article navigation
+     ------------------}}
+  <template id="tmpl-article-navigation">
+    <% if (previousArticle || nextArticle) { %>
+      <div class="row">
+        <% if (previousArticle) { %>
+          <div class="sm:col">
+            <% if (previousTitle) { %>
+              <h4 class="mb-2"><%= previousTitle %></h4>
+            <% } %>
+            <a href="<%= previousArticle.html_url %>"><%= previousArticle.title %></a>
+          </div>
+        <% } %>
+        <% if (nextArticle) { %>
+          <div class="sm:col text-right<% if (!previousArticle) { %> sm:col-offset-6<% } %>">
+            <% if (nextTitle) { %>
+              <h4 class="mb-2"><%= nextTitle %></h4>
+            <% } %>
+            <a href="<%= nextArticle.html_url %>"><%= nextArticle.title %></a>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </template>
+{{/is~}}
+
+{{~#isnt settings.table_of_contents_style 'none'}}
+  {{!-----------------
+     Table of Contents
+     -----------------}}
+  {{~#is settings.table_of_contents_style 'simple'}}
+    {{! Simple }}
+    <template id="tmpl-table-of-contents">
+      <% if (items.length > 1) { %>
+        {{~#if settings.table_of_contents_heading}}
+          <h3>
+            {{~#if settings.use_translations}}
+              {{dc settings.table_of_contents_heading}}
+            {{else}}
+              {{settings.table_of_contents_heading}}
+            {{/if~}}
+          </h3>
+        {{/if~}}
+        <ol class="mb-6 list-unstyled font-size-md">
+          <% items.forEach(function(item) { %>
+            <li class="list-item">
+              <a href="<%= item.html_url %>">
+                <%= item.name %>
+              </a>
+              <%= partial('partial-table-of-contents', { items: item.children, partial: partial }) %>
+            </li>
+          <% }); %>
+        </ol>
+      <% } %>
+    </template>
+  {{/is~}}
+  {{~#is settings.table_of_contents_style 'boxed'}}
+    {{! Boxed }}
+    <template id="tmpl-table-of-contents">
+      <% if (items.length > 1) { %>
+        <div class="bg-gray-100 border border-radius px-5 mb-5 float-right w-full md:ml-5 md:px-6 md:col-5 lg:col-6 xl:col-5">
+          {{~#if settings.table_of_contents_heading}}
+            <h3>
+              {{~#if settings.use_translations}}
+                {{dc settings.table_of_contents_heading}}
+              {{else}}
+                {{settings.table_of_contents_heading}}
+              {{/if~}}
+            </h3>
+          {{/if~}}
+          <ol class="mb-6 list-unstyled font-size-md">
+            <% items.forEach(function(item) { %>
+              <li class="list-item">
+                <a href="<%= item.html_url %>">
+                  <%= item.name %>
+                </a>
+                <%= partial('partial-table-of-contents', { items: item.children, partial: partial }) %>
+              </li>
+            <% }); %>
+          </ol>
+        </div>
+      <% } %>
+    </template>
+  {{/is~}}
+  {{~#is settings.table_of_contents_style 'full-width'}}
+    {{! Full-width }}
+    <template id="tmpl-table-of-contents">
+      <% if (items.length > 1) { %>
+        <div class="border border-radius border-left-4 px-6 my-6 w-full">
+          {{~#if settings.table_of_contents_heading}}
+            <h3>
+              {{~#if settings.use_translations}}
+                {{dc settings.table_of_contents_heading}}
+              {{else}}
+                {{settings.table_of_contents_heading}}
+              {{/if~}}
+            </h3>
+          {{/if~}}
+          <ol class="mb-6 list-unstyled font-size-md">
+            <% items.forEach(function(item) { %>
+              <li class="list-item">
+                <a href="<%= item.html_url %>">
+                  <%= item.name %>
+                </a>
+                <%= partial('partial-table-of-contents', { items: item.children, partial: partial }) %>
+              </li>
+            <% }); %>
+          </ol>
+        </div>
+      <% } %>
+    </template>
+  {{/is~}}
+
+  {{~#isnt settings.table_of_contents_style 'simple'}}
+    {{~#isnt settings.table_of_contents_style 'boxed'}}
+      {{~#isnt settings.table_of_contents_style 'full-width'}}
+        {{! Sidebar }}
+        <template id="tmpl-sidebar-table-of-contents">
+          <% if (items.length > 1) { %>
+            <div class="sticky-top{{#unless settings.sticky_header}} pt-4 -mt-4{{/unless}}"{{#if settings.sticky_header}} style="padding-top: {{settings.header_height}}; margin-top: -{{settings.header_height}}; "{{/if}}>
+              <h3 class="font-size-lg mt-6">
+                {{#if settings.use_translations}}
+                  {{dc settings.table_of_contents_heading}}
+                {{else}}
+                  {{settings.table_of_contents_heading}}
+                {{/if}}
+              </h3>
+              <ol class="nav nav-pills flex-column font-size-md">
+                <% items.forEach(function(item) { %>
+                  <li class="nav-item">
+                    <a class="nav-link text-inherit border-radius" href="<%= item.html_url %>">
+                      <%= item.name %>
+                    </a>
+                  </li>
+                <% }); %>
+              </ol>
+            </div>
+          <% } %>
+        </template>
+      {{/isnt}}
+    {{/isnt}}
+  {{/isnt}}
+
+  {{~#isnt settings.table_of_contents_style 'sidebar-left'}}
+    {{~#isnt settings.table_of_contents_style 'sidebar-right'}}
+      {{! Nested items list }}
+      <template id="tmpl-partial-table-of-contents">
+        <% if (items.length) { %>
+          <ol class="list-none mb-0">
+            <% items.forEach(function(item) { %>
+              <li class="list-item">
+                <a href="<%= item.html_url %>">
+                  <%= item.name %>
+                </a>
+                <%= partial('partial-table-of-contents', { items: item.children, partial: partial }) %>
+              </li>
+            <% }); %>
+          </ol>
+        <% } %>
+      </template>
+    {{/isnt}}
+  {{/isnt}}
+{{/isnt}}
