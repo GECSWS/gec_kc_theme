@@ -273,7 +273,7 @@
               <div class="card card-body h-full text-<%= alignment %> bg-white transition-fast <% if (color === 'white') { %>hover:text-primary hover:border-primary<% } else { %>hover:text-<%= color %>-inverse hover:bg-<%= color %><% } %>">
                 <div class="justify-content-between<% if (imageHeight) { %> align-items-center<% } %>">
                   <% if (imageHeight) { %>
-                    <img class="text-primary fill-current invisible" src="<%= images.length > index ? images[index] : images[images.length - 1] %>" alt="" style="height: <%= imageHeight %>; width: auto;" data-inline-svg />
+                    <img class="text-primary- fill-current invisible" src="<%= images.length > index ? images[index] : images[images.length - 1] %>" alt="" style="height: <%= imageHeight %>; width: auto;" data-inline-svg />
                   <% } %>
                   <h2 class="my-2<% if (numberColumns > 3 || !imageHeight) { %> h3<% } %><% if (['gray-100', 'gray-200'].indexOf(color) === -1) { %> hover:text-inherit<% } %>">
                     <a class="link-stretched text-inherit hover:no-underline hover:text-inherit" href="<%= block.html_url %>">
