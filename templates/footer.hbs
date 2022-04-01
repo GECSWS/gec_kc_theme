@@ -270,7 +270,7 @@
               <% if (numberColumns >= 3) { %> lg:col-4<% } %>
               <% if (numberColumns >= 4) { %> xl:col-3<% } %>
             <% } %>">
-              <div class="card card-body h-full text-<%= alignment %> bg-white transition-fast <% if (color === 'white') { %>hover:text-primary- hover:border-primary<% } else { %>hover:text-<%= color %>-inverse hover:bg-<%= color %><% } %>">
+              <div class="card card-body h-full text-<%= alignment %> bg-white transition-fast <% if (color === 'white') { %>hover:text-primary-hover hover:border-primary<% } else { %>hover:text-<%= color %>-inverse hover:bg-<%= color %><% } %>">
                 <div class="justify-content-between<% if (imageHeight) { %> align-items-center<% } %>">
                   <% if (imageHeight) { %>
                     <img class="text-primary- fill-current invisible" src="<%= images.length > index ? images[index] : images[images.length - 1] %>" alt="" style="height: <%= imageHeight %>; width: auto;" data-inline-svg />
