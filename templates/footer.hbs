@@ -273,6 +273,7 @@
               <div class="card card-body h-full text-<%= alignment %> bg-white transition-fast <% if (color === 'white') { %>hover:text-primary hover:shadow-lg hover:border-primary<% } else { %>hover:text-<%= color %>-inverse hover:bg-<%= color %><% } %>">
                 <div class="justify-content-between<% if (imageHeight) { %> align-items-center<% } %>">
                   <% if (imageHeight) { %>
+                  test
                     <img class="text-primary- fill-current invisible" src="<%= images.length > index ? images[index] : images[images.length - 1] %>" alt="" style="height: <%= imageHeight %>; width: auto;" data-inline-svg />
                   <% } %>
                   <h2 class="my-2<% if (numberColumns > 3 || !imageHeight) { %> h3<% } %><% if (['gray-100', 'gray-200'].indexOf(color) === -1) { %> hover:text-inherit<% } %>">
@@ -1233,3 +1234,23 @@
     </ul>
   <% } %>
 </template>
+
+
+<ul class="list-unstyled row justify-content-center mb-0">
+  {{#each categories}}
+    <li class="md:col-6 lg:col-4">
+      <a class="block link-plain text-inherit p-5 h-full mb-4 text-center transition-fast md:mb-0 md:bg-transparent hover:bg-white hover:grow hover:shadow-lg" href="{{url}}">
+        <img class="w-9" src="{{asset @index prefix='category' suffix='.svg'}}" alt="{{name}}">
+        <h2 class="h2">
+          {{name}}
+        </h2>
+        {{#if description}}
+          <p class="text-base">
+            {{excerpt description}}
+          </p>
+        {{/if}}
+      </a>
+    </li>
+  {{/each}}
+</ul>
+{{pagination}}
