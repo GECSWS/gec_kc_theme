@@ -1236,21 +1236,3 @@
 </template>
 
 
-<ul class="list-unstyled row justify-content-center mb-0">
-  {{#each categories}}
-    <li class="md:col-6 lg:col-4">
-      <a class="block link-plain text-inherit p-5 h-full mb-4 text-center transition-fast md:mb-0 md:bg-transparent hover:bg-white hover:grow hover:shadow-lg" href="{{url}}">
-        <img class="w-9" src="{{asset @index prefix='category' suffix='.svg'}}" alt="{{name}}">
-        <h2 class="h2">
-          {{name}}
-        </h2>
-        {{#if description}}
-          <p class="text-base">
-            {{excerpt description}}
-          </p>
-        {{/if}}
-      </a>
-    </li>
-  {{/each}}
-</ul>
-{{pagination}}
