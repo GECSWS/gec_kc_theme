@@ -286,6 +286,7 @@
                         {{~#if (compare ../../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
                         {{~#if (compare ../../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
                         {{#if ../../settings.content_block_image_height}}
+                            {{#if (compare @index "<=" 7)}}
                           <img class="svg-icon mt-4 {{#is ../../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="section-{{id}}" src="
                             {{~#is @index 0~}}{{../../settings.content_block_1_image}}{{~/is~}}
                             {{~#is @index 1~}}{{../../settings.content_block_2_image}}{{~/is~}}
@@ -294,8 +295,9 @@
                             {{~#is @index 4~}}{{../../settings.content_block_5_image}}{{~/is~}}
                             {{~#is @index 5~}}{{../../settings.content_block_6_image}}{{~/is~}}
                             {{~#is @index 6~}}{{../../settings.content_block_7_image}}{{~/is~}}
-                            {{#if (compare @index ">=" 7)}}{{../../settings.content_block_8_image}}{{/if}}
+
                           " style="height: {{../../settings.content_block_image_height}}; width: auto;" />
+                            {{/if}}
                         {{/if}}
                         <h3>
                           {{name}}
