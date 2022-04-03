@@ -1,7 +1,7 @@
 {
   "name": "Kai",
   "author": "Zenplates",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -583,6 +583,23 @@
           "description": "content_block_8_image_description",
           "label": "content_block_8_image_label"
         },
+
+        {
+          "identifier": "content_block_9_image",
+          "type": "file",
+          "description": "content_block_8_image_description",
+          "label": "content_block_8_image_label"
+        },
+
+
+        {
+          "identifier": "content_block_10_image",
+          "type": "file",
+          "description": "content_block_8_image_description",
+          "label": "content_block_8_image_label"
+        },
+
+
         {
           "identifier": "custom_block_1_image",
           "type": "file",
