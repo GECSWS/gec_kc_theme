@@ -1,7 +1,7 @@
 {
   "name": "Kai",
   "author": "Zenplates",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -516,7 +516,7 @@
           "type": "text",
           "description": "tagline_description",
           "label": "tagline_label",
-          "value": "Kai"
+          "value": "GEC |  Knowlege Center"
         }
       ]
     },
