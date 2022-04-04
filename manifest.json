@@ -1,7 +1,7 @@
 {
-  "name": "Kai",
+  "name": "GEC KC Theme\n",
   "author": "Zenplates",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -13,7 +13,7 @@
           "type": "color",
           "description": "color_primary_description",
           "label": "color_primary_label",
-          "value": "#383888"
+          "value": "rgba(41, 100, 172, 1)"
         },
         {
           "identifier": "color_primary_inverse",
@@ -27,7 +27,7 @@
           "type": "color",
           "description": "color_secondary_description",
           "label": "color_secondary_label",
-          "value": "#383888"
+          "value": "rgba(143, 175, 67, 1)"
         },
         {
           "identifier": "color_secondary_inverse",
@@ -41,7 +41,7 @@
           "type": "color",
           "description": "color_tertiary_description",
           "label": "color_tertiary_label",
-          "value": "#000032"
+          "value": "rgba(243, 163, 73, 1)"
         },
         {
           "identifier": "color_tertiary_inverse",
@@ -55,56 +55,56 @@
           "type": "color",
           "description": "heading_color_description",
           "label": "heading_color_label",
-          "value": "#222"
+          "value": "rgba(0, 0, 0, 1)"
         },
         {
           "identifier": "color_text",
           "type": "color",
           "description": "text_color_description",
           "label": "text_color_label",
-          "value": "#333333"
+          "value": "rgba(17, 17, 17, 1)"
         },
         {
           "identifier": "color_link",
           "type": "color",
           "description": "link_color_description",
           "label": "link_color_label",
-          "value": "#279b96"
+          "value": "rgba(56, 124, 208, 1)"
         },
         {
           "identifier": "color_border",
           "type": "color",
           "description": "color_border_description",
           "label": "color_border_label",
-          "value": "#e2e8f0"
+          "value": "rgba(204, 204, 204, 1)"
         },
         {
           "identifier": "color_outline",
           "type": "color",
           "description": "outline_color_description",
           "label": "outline_color_label",
-          "value": "rgba(0, 114, 239, .25)"
+          "value": "rgba(202, 229, 248, 1)"
         },
         {
           "identifier": "color_gray_100",
           "type": "color",
           "description": "color_gray_100_description",
           "label": "color_gray_100_label",
-          "value": "#F7FAFC"
+          "value": "rgba(247, 251, 254, 1)"
         },
         {
           "identifier": "color_gray_200",
           "type": "color",
           "description": "color_gray_200_description",
           "label": "color_gray_200_label",
-          "value": "#EDF2F7"
+          "value": "rgba(238, 247, 253, 1)"
         },
         {
           "identifier": "color_gray_600",
           "type": "color",
           "description": "color_gray_600_description",
           "label": "color_gray_600_label",
-          "value": "#5B5B60"
+          "value": "rgba(102, 102, 102, 1)"
         },
         {
           "identifier": "bg_color",
@@ -123,7 +123,7 @@
           "type": "list",
           "description": "heading_font_description",
           "label": "heading_font_label",
-          "value": "'Libre Franklin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
           "options": [
             {
               "label": "Arimo (Google)",
@@ -304,7 +304,7 @@
           "type": "list",
           "description": "text_font_description",
           "label": "text_font_label",
-          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
           "options": [
             {
               "label": "Arimo (Google)",
@@ -583,8 +583,6 @@
           "description": "content_block_8_image_description",
           "label": "content_block_8_image_label"
         },
-
-
         {
           "identifier": "custom_block_1_image",
           "type": "file",
@@ -695,7 +693,7 @@
           "type": "text",
           "description": "search_placeholder_description",
           "label": "search_placeholder_label",
-          "value": ""
+          "value": "Search our articles"
         },
         {
           "identifier": "search_translucent",
@@ -753,7 +751,7 @@
           "type": "checkbox",
           "description": "sticky_header_description",
           "label": "sticky_header_label",
-          "value": false
+          "value": true
         },
         {
           "identifier": "nav_style",
@@ -813,70 +811,70 @@
           "type": "text",
           "description": "header_height_description",
           "label": "header_height_label",
-          "value": "72px"
+          "value": "80px"
         },
         {
           "identifier": "color_header_link",
           "type": "color",
           "description": "color_header_link_description",
           "label": "color_header_link_label",
-          "value": "#f3f3ff"
+          "value": "rgba(247, 250, 253, 1)"
         },
         {
           "identifier": "color_header_link_fixed",
           "type": "color",
           "description": "color_header_link_fixed_description",
           "label": "color_header_link_fixed_label",
-          "value": "#f3f3ff"
+          "value": "rgba(247, 250, 253, 1)"
         },
         {
           "identifier": "bg_color_header",
           "type": "color",
           "description": "bg_color_header_description",
           "label": "bg_color_header_label",
-          "value": "#20204e"
+          "value": "rgba(39, 95, 164, 1)"
         },
         {
           "identifier": "header_link_1_text",
           "type": "text",
           "description": "header_link_1_text_description",
           "label": "header_link_1_text_label",
-          "value": "Back to website"
+          "value": "Back to Portal"
         },
         {
           "identifier": "header_link_1_url",
           "type": "text",
           "description": "header_link_1_url_description",
           "label": "header_link_1_url_label",
-          "value": "https://www.zenplates.co"
+          "value": "https://portal.gecsws.com/"
         },
         {
           "identifier": "header_link_2_text",
           "type": "text",
           "description": "header_link_2_text_description",
           "label": "header_link_2_text_label",
-          "value": ""
+          "value": "Link2"
         },
         {
           "identifier": "header_link_2_url",
           "type": "text",
           "description": "header_link_2_url_description",
           "label": "header_link_2_url_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "header_link_3_text",
           "type": "text",
           "description": "header_link_3_text_description",
           "label": "header_link_3_text_label",
-          "value": ""
+          "value": "Link3"
         },
         {
           "identifier": "header_link_3_url",
           "type": "text",
           "description": "header_link_3_url_description",
           "label": "header_link_3_url_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "show_submit_a_request_link",
@@ -994,7 +992,7 @@
           "type": "text",
           "description": "hero_heading_description",
           "label": "hero_heading_label",
-          "value": "Questions? We have answers."
+          "value": "Hi! How can we help you today?"
         },
         {
           "identifier": "color_hero_heading",
@@ -1022,7 +1020,7 @@
           "type": "list",
           "description": "hero_image_style_description",
           "label": "hero_image_style_label",
-          "value": "overlay-pattern",
+          "value": "parallax",
           "options": [
             {
               "label": "Behind background",
@@ -1047,14 +1045,14 @@
           "type": "color",
           "description": "bg_color_hero_description",
           "label": "bg_color_hero_label",
-          "value": "#000032"
+          "value": "rgba(41, 100, 172, 1)"
         },
         {
           "identifier": "bg_color_secondary_hero",
           "type": "color",
           "description": "bg_color_secondary_hero_description",
           "label": "bg_color_secondary_hero_label",
-          "value": "#12125c"
+          "value": "rgba(36, 88, 151, 1)"
         },
         {
           "identifier": "bg_gradient_hero",
@@ -1082,7 +1080,7 @@
           "type": "list",
           "description": "hero_content_alignment_description",
           "label": "hero_content_alignment_label",
-          "value": "left",
+          "value": "center",
           "options": [
             {
               "label": "Left",
@@ -1099,7 +1097,7 @@
           "type": "list",
           "description": "hero_element_shape_description",
           "label": "hero_element_shape_label",
-          "value": "none",
+          "value": "curve",
           "options": [
             {
               "label": "None",
@@ -1184,7 +1182,7 @@
           "type": "text",
           "description": "popular_keywords_description",
           "label": "popular_keywords_label",
-          "value": "invoices, payments, returns"
+          "value": "DWV, SWIFT Surveys, Account"
         },
         {
           "identifier": "promoted_videos_heading",
@@ -1231,7 +1229,7 @@
           "type": "list",
           "description": "custom_block_style_description",
           "label": "custom_block_style_label",
-          "value": "none",
+          "value": "cards",
           "options": [
             {
               "label": "None",
@@ -1285,7 +1283,7 @@
           "type": "color",
           "description": "bg_color_custom_blocks_description",
           "label": "bg_color_custom_blocks_label",
-          "value": "#f6fbff"
+          "value": "rgba(255, 255, 255, 1)"
         },
         {
           "identifier": "custom_blocks_heading",
@@ -1462,7 +1460,7 @@
           "type": "list",
           "description": "content_block_style_description",
           "label": "content_block_style_label",
-          "value": "1-tabs",
+          "value": "2-columns",
           "options": [
             {
               "label": "None",
@@ -1535,7 +1533,7 @@
           "type": "text",
           "description": "content_blocks_heading_description",
           "label": "content_blocks_heading_label",
-          "value": "All topics"
+          "value": "Software"
         },
         {
           "identifier": "number_content_block_columns",
@@ -1567,7 +1565,7 @@
           "type": "list",
           "description": "content_block_alignment_description",
           "label": "content_block_alignment_label",
-          "value": "left",
+          "value": "center",
           "options": [
             {
               "label": "Left",
@@ -1584,7 +1582,7 @@
           "type": "text",
           "description": "content_block_image_height_description",
           "label": "content_block_image_height_label",
-          "value": ""
+          "value": "80px"
         }
       ]
     },
@@ -1677,7 +1675,7 @@
           "type": "list",
           "description": "promoted_article_list_style_description",
           "label": "promoted_article_list_style_label",
-          "value": "3-bordered",
+          "value": "1-bullet",
           "options": [
             {
               "label": "None",
@@ -1710,7 +1708,7 @@
           "type": "list",
           "description": "promoted_article_list_position_description",
           "label": "promoted_article_list_position_label",
-          "value": "before",
+          "value": "after",
           "options": [
             {
               "label": "Before",
@@ -1840,7 +1838,7 @@
           "type": "text",
           "description": "contact_blocks_heading_description",
           "label": "contact_blocks_heading_label",
-          "value": ""
+          "value": "a"
         },
         {
           "identifier": "number_contact_blocks",
@@ -1897,7 +1895,7 @@
           "type": "text",
           "description": "contact_block_image_height_description",
           "label": "contact_block_image_height_label",
-          "value": ""
+          "value": "48px"
         },
         {
           "identifier": "contact_block_1_title",
@@ -2497,7 +2495,7 @@
           "type": "list",
           "description": "footer_layout_description",
           "label": "footer_layout_label",
-          "value": "links-left",
+          "value": "links-center",
           "options": [
             {
               "label": "Links on left",
@@ -2522,7 +2520,7 @@
           "type": "list",
           "description": "footer_shape_description",
           "label": "footer_shape_label",
-          "value": "curve",
+          "value": "wave",
           "options": [
             {
               "label": "None",
@@ -2575,56 +2573,56 @@
           "type": "color",
           "description": "color_footer_link_description",
           "label": "color_footer_link_label",
-          "value": "#f3f3ff"
+          "value": "rgba(247, 250, 253, 1)"
         },
         {
           "identifier": "bg_color_footer",
           "type": "color",
           "description": "bg_color_footer_description",
           "label": "bg_color_footer_label",
-          "value": "#20204e"
+          "value": "rgba(41, 100, 172, 1)"
         },
         {
           "identifier": "footer_link_1_text",
           "type": "text",
           "description": "footer_link_1_text_description",
           "label": "footer_link_1_text_label",
-          "value": "Back to website"
+          "value": "Back to portal"
         },
         {
           "identifier": "footer_link_1_url",
           "type": "text",
           "description": "footer_link_1_url_description",
           "label": "footer_link_1_url_label",
-          "value": "https://www.zenplates.co"
+          "value": "https://portal.gecsws.com"
         },
         {
           "identifier": "footer_link_2_text",
           "type": "text",
           "description": "footer_link_2_text_description",
           "label": "footer_link_2_text_label",
-          "value": ""
+          "value": "link2"
         },
         {
           "identifier": "footer_link_2_url",
           "type": "text",
           "description": "footer_link_2_url_description",
           "label": "footer_link_2_url_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "footer_link_3_text",
           "type": "text",
           "description": "footer_link_3_text_description",
           "label": "footer_link_3_text_label",
-          "value": ""
+          "value": "link3"
         },
         {
           "identifier": "footer_link_3_url",
           "type": "text",
           "description": "footer_link_3_url_description",
           "label": "footer_link_3_url_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "facebook_link",
@@ -2638,35 +2636,35 @@
           "type": "text",
           "description": "twitter_link_description",
           "label": "twitter_link_label",
-          "value": "https://www.twitter.com/"
+          "value": "https://www.twitter.com/GlobalEnvAz"
         },
         {
           "identifier": "linkedin_link",
           "type": "text",
           "description": "linkedin_link_description",
           "label": "linkedin_link_label",
-          "value": "https://www.linkedin.com/"
+          "value": "https://www.linkedin.com/company/1gec"
         },
         {
           "identifier": "instagram_link",
           "type": "text",
           "description": "instagram_link_description",
           "label": "instagram_link_label",
-          "value": "https://www.instagram.com/"
+          "value": ""
         },
         {
           "identifier": "youtube_link",
           "type": "text",
           "description": "youtube_link_description",
           "label": "youtube_link_label",
-          "value": "https://www.youtube.com/"
+          "value": ""
         },
         {
           "identifier": "show_credit_link",
           "type": "checkbox",
           "description": "show_credit_link_description",
           "label": "show_credit_link_label",
-          "value": true
+          "value": false
         }
       ]
     },

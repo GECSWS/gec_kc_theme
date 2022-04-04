@@ -234,7 +234,7 @@
           {{#if (compare settings.content_block_style '<=' '8')}}
 
             {{#if settings.content_blocks_heading}}
-              <h2 class="inline-flex align-items-baseline mt-6" x-data="{ src: Theme.assets['content-blocks-heading'] }">
+              <h1 class="inline-flex align-items-baseline mt-6" x-data="{ src: Theme.assets['content-blocks-heading'] }">
                 <template x-if="src">
                   <img class="svg-icon mr-2" src="{{asset 'placeholder.png'}}" alt="" aria-hidden="true" :src="src" />
                 </template>
@@ -243,19 +243,34 @@
                 {{else}}
                   {{settings.content_blocks_heading}}
                 {{/if}}
-              </h2>
+              </h1>
             {{/if}}
+
+
+
 
             {{! Columns style }}
             {{#is settings.content_block_style '2-columns'}}
               <ul class="list-unstyled row justify-content-start">
+
                 {{#each categories}}
                   {{#if ../has_multiple_categories}}
+
                     <li class="col-12 flex flex-column align-items-stretch mb-6 text-{{../settings.content_block_alignment}}
                       {{~#if (compare ../settings.number_content_block_columns ">=" "2")}} md:col-6{{/if~}}
                       {{~#if (compare ../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
                       {{~#if (compare ../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
+
+
+
+                        {{#if (compare @index "<=" 5)}}
+                        <div class="card card-body h-full text-center bg-white transition-fast shadow-xs hover:text-primary hover:shadow-xlg">
+                        {{/if}}
+
+
+
                       {{#if ../settings.content_block_image_height}}
+                          {{#if (compare @index "<=" 5)}}
                         <img class="svg-icon mt-4 {{#is ../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="category-{{id}}" src="
                           {{~#is @index 0~}}{{../settings.content_block_1_image}}{{~/is~}}
                           {{~#is @index 1~}}{{../settings.content_block_2_image}}{{~/is~}}
@@ -264,9 +279,11 @@
                           {{~#is @index 4~}}{{../settings.content_block_5_image}}{{~/is~}}
                           {{~#is @index 5~}}{{../settings.content_block_6_image}}{{~/is~}}
                           {{~#is @index 6~}}{{../settings.content_block_7_image}}{{~/is~}}
-                          {{#if (compare @index ">=" 7)}}{{../settings.content_block_8_image}}{{/if}}
+
                         " style="height: {{../settings.content_block_image_height}}; width: auto;" />
+                          {{/if}}
                       {{/if}}
+
                       <h3>
                         {{name}}
                       </h3>
@@ -278,7 +295,14 @@
                       <a class="text-inherit font-medium link-stretched underline{{#isnt ../settings.color_content_blocks 'white'}} hover:text-{{../settings.color_content_blocks}}{{/isnt}}" href="{{url}}">
                         {{t 'show_all_articles'}}
                       </a>
+
+                    {{#if (compare @index "<=" 5)}}
+                        </div>
+                    {{/if}}
+
+
                     </li>
+
                   {{else}}
                     {{#each sections}}
                       <li class="col-12 flex flex-column align-items-stretch mb-6 text-{{../../settings.content_block_alignment}}
@@ -286,7 +310,6 @@
                         {{~#if (compare ../../settings.number_content_block_columns ">=" "3")}} lg:col-4{{/if~}}
                         {{~#if (compare ../../settings.number_content_block_columns "==" "4")}} xl:col-3{{/if~}}">
                         {{#if ../../settings.content_block_image_height}}
-                            {{#if (compare @index "<=" 7)}}
                           <img class="svg-icon mt-4 {{#is ../../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="section-{{id}}" src="
                             {{~#is @index 0~}}{{../../settings.content_block_1_image}}{{~/is~}}
                             {{~#is @index 1~}}{{../../settings.content_block_2_image}}{{~/is~}}
@@ -295,9 +318,8 @@
                             {{~#is @index 4~}}{{../../settings.content_block_5_image}}{{~/is~}}
                             {{~#is @index 5~}}{{../../settings.content_block_6_image}}{{~/is~}}
                             {{~#is @index 6~}}{{../../settings.content_block_7_image}}{{~/is~}}
-
+                            {{#if (compare @index ">=" 7)}}{{../../settings.content_block_8_image}}{{/if}}
                           " style="height: {{../../settings.content_block_image_height}}; width: auto;" />
-                            {{/if}}
                         {{/if}}
                         <h3>
                           {{name}}
