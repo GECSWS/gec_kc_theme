@@ -1,7 +1,7 @@
 {
-  "name": "GEC KC Theme\n",
+  "name": "GEC KC Theme",
   "author": "Zenplates",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -1838,7 +1838,7 @@
           "type": "text",
           "description": "contact_blocks_heading_description",
           "label": "contact_blocks_heading_label",
-          "value": "a"
+          "value": "Contact us for more information "
         },
         {
           "identifier": "number_contact_blocks",

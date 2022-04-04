@@ -119,8 +119,8 @@
               this.$refs.menu.style.left = -((bounds.x + bounds.width) - window.innerWidth) + 'px';
             }
             if (bounds.top + bounds.height >= window.innerHeight) {
-              this.$refs.menu.style.top = 'auto';
-              this.$refs.menu.style.bottom = '100%';
+              //this.$refs.menu.style.top = 'auto';  //comment this lines to fix the bug with categories list
+              //this.$refs.menu.style.bottom = '100%'; //
             }
             this.$refs.menu.classList.remove('invisible');
           }
