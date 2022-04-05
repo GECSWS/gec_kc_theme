@@ -109,6 +109,7 @@
       },
 
       handleOverflow: function() {
+
         var observer = new IntersectionObserver((entries) => {
           for (var entry of entries) {
             var bounds = entry.boundingClientRect;
@@ -120,7 +121,7 @@
             }
             if (bounds.top + bounds.height >= window.innerHeight) {
               //this.$refs.menu.style.top = 'auto';  //comment this lines to fix the bug with categories list
-              //this.$refs.menu.style.bottom = '100%'; //
+              //this.$refs.menu.style.bottom = '100%';
             }
             this.$refs.menu.classList.remove('invisible');
           }

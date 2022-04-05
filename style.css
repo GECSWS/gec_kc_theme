@@ -2930,7 +2930,7 @@ html[dir="rtl"] .notification-left-aligned {
 .header .navbar-brand,
 .header .navbar-toggle,
 .header .nav-link {
-  color: $color_header_link;
+  color: $color_header_link !important;
 }
 
 .header .navbar-brand:focus, .header .navbar-brand:hover,
@@ -2938,7 +2938,7 @@ html[dir="rtl"] .notification-left-aligned {
 .header .navbar-toggle:hover,
 .header .nav-link:focus,
 .header .nav-link:hover {
-  color: darken($color_header_link, 6%);
+  color: darken($color_header_link, 6%) !important;
 }
 
 .header .navbar-brand:active,
