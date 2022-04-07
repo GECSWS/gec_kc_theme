@@ -271,7 +271,7 @@
 
                       {{#if ../settings.content_block_image_height}}
                           {{#if (compare @index "<=" 5)}}
-                        <img class="svg-icon mt-4 {{#is ../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="category-{{id}}" src="
+                        <img class="svg-icon {{#is ../settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto" alt="{{name}}" data-asset="image" data-asset-id="category-{{id}}" src="
                           {{~#is @index 0~}}{{../settings.content_block_1_image}}{{~/is~}}
                           {{~#is @index 1~}}{{../settings.content_block_2_image}}{{~/is~}}
                           {{~#is @index 2~}}{{../settings.content_block_3_image}}{{~/is~}}

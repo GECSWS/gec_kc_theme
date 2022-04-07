@@ -3082,6 +3082,26 @@ html[dir="rtl"] .notification-left-aligned {
   transform: translateX(0);
 }
 
+
+.dropdown-categories{
+  min-width: 65rem !important;
+  right: -10rem;
+}
+
+
+
+@media (max-width: 576px) {
+  .dropdown-categories{
+    min-width: 100% !important;
+    right: auto;
+    left: auto;
+    height: 50vh;
+    overflow-y: scroll;
+  }
+}
+
+
+
 .dropdown-menu-top {
   top: auto;
   bottom: 100%;
@@ -3097,14 +3117,15 @@ html[dir="rtl"] .notification-left-aligned {
   padding: 0.5rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #2D3748;
+  color: #111111;
   text-align: inherit;
   background-color: transparent;
   border: 0;
+  border-radius: 0.25rem;
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
-  color: darken(#2D3748, 5%);
+  color: #222222;
   text-decoration: none;
   background-color: $color_gray_200;
 }
@@ -3127,6 +3148,11 @@ html[dir="rtl"] .notification-left-aligned {
   margin-left: 10px;
   width: 12px;
 }
+
+
+
+
+
 
 [dir="rtl"] .dropdown-item[aria-selected="true"]::after {
   margin-left: 0;

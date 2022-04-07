@@ -187,7 +187,7 @@
                 <use xlink:href="#icon-chevron-down" />
               </svg>
             </button>
-            <div class="z-dropdown mt-2 bg-white {{settings.nav_breakpoint}}:absolute {{settings.nav_breakpoint}}:border {{settings.nav_breakpoint}}:border-radius {{settings.nav_breakpoint}}:shadow-md {{settings.nav_breakpoint}}:min-w-dropdown" x-ref="menu" x-cloak x-show="isExpanded">
+            <div class="z-dropdown mt-2 bg-white {{settings.nav_breakpoint}}:absolute border border-radius shadow-md {{settings.nav_breakpoint}}:min-w-dropdown" x-ref="menu" x-cloak x-show="isExpanded">
               <div class="py-2 {{settings.nav_breakpoint}}:font-size-sm {{settings.nav_breakpoint}}:text-left">
                 {{#my_profile class='dropdown-item'}}{{t 'profile'}}{{/my_profile}}
                 {{link "requests" class='dropdown-item'}}
@@ -314,10 +314,13 @@
             <use xlink:href="#icon-chevron-down" />
           </svg>
         </button>
-        <div class="z-dropdown mt-2 bg-white {{settings.nav_breakpoint}}:absolute {{settings.nav_breakpoint}}:border {{settings.nav_breakpoint}}:border-radius {{settings.nav_breakpoint}}:shadow-md {{settings.nav_breakpoint}}:min-w-dropdown" x-ref="menu" x-cloak x-show="isExpanded" :aria-expanded="isExpanded">
-          <div class="py-2 {{settings.nav_breakpoint}}:font-size-sm {{settings.nav_breakpoint}}:text-left" x-data="Widgets.categories" x-init="getCategories">
+        <div class="z-dropdown mt-2 bg-white dropdown-categories dropdown-menu-end p-3 {{settings.nav_breakpoint}}:absolute {{settings.nav_breakpoint}}:border border-radius shadow-md " x-ref="menu" x-cloak x-show="isExpanded" :aria-expanded="isExpanded">
+          <div class="row {{settings.nav_breakpoint}}:font-size-sm {{settings.nav_breakpoint}}:text-left" x-data="Widgets.categories" x-init="getCategories">
             <template x-for="category in categories">
-              <a class="dropdown-item" :href="category.html_url" x-text="category.name"></a>
+                <div class="col-12 sm:col-4">
+                    <a class="dropdown-item px-2 py-2" :href="category.html_url" x-text="category.name"></a>
+                </div>
+
             </template>
           </div>
         </div>
