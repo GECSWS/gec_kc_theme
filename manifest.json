@@ -1,7 +1,7 @@
 {
   "name": "GEC KC Theme",
   "author": "Zenplates",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -69,7 +69,7 @@
           "type": "color",
           "description": "link_color_description",
           "label": "link_color_label",
-          "value": "rgba(56, 124, 208, 1)"
+          "value": "rgba(41, 100, 172, 1)"
         },
         {
           "identifier": "color_border",
@@ -123,12 +123,17 @@
           "type": "list",
           "description": "heading_font_description",
           "label": "heading_font_label",
-          "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "'Assistant', sans-serif",
           "options": [
             {
               "label": "Arimo (Google)",
               "value": "'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
             },
+            {
+              "label": "Assistant (Google)",
+              "value": "'Assistant', sans-serif"
+            },
+
             {
               "label": "Bitter (Google)",
               "value": "'Bitter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -304,8 +309,14 @@
           "type": "list",
           "description": "text_font_description",
           "label": "text_font_label",
-          "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "'Assistant', sans-serif",
           "options": [
+            {
+              "label": "Assistant (Google)",
+              "value": "'Assistant', sans-serif"
+            },
+
+
             {
               "label": "Arimo (Google)",
               "value": "'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -853,28 +864,28 @@
           "type": "text",
           "description": "header_link_2_text_description",
           "label": "header_link_2_text_label",
-          "value": "Link2"
+          "value": "GEC"
         },
         {
           "identifier": "header_link_2_url",
           "type": "text",
           "description": "header_link_2_url_description",
           "label": "header_link_2_url_label",
-          "value": "#"
+          "value": "https://www.1gec.com"
         },
         {
           "identifier": "header_link_3_text",
           "type": "text",
           "description": "header_link_3_text_description",
           "label": "header_link_3_text_label",
-          "value": "Link3"
+          "value": ""
         },
         {
           "identifier": "header_link_3_url",
           "type": "text",
           "description": "header_link_3_url_description",
           "label": "header_link_3_url_label",
-          "value": "#"
+          "value": ""
         },
         {
           "identifier": "show_submit_a_request_link",
@@ -1805,7 +1816,7 @@
           "type": "list",
           "description": "color_contact_blocks_description",
           "label": "color_contact_blocks_label",
-          "value": "white",
+          "value": "primary",
           "options": [
             {
               "label": "White",
@@ -1838,7 +1849,7 @@
           "type": "text",
           "description": "contact_blocks_heading_description",
           "label": "contact_blocks_heading_label",
-          "value": "Contact us for more information "
+          "value": ""
         },
         {
           "identifier": "number_contact_blocks",
@@ -1895,7 +1906,7 @@
           "type": "text",
           "description": "contact_block_image_height_description",
           "label": "contact_block_image_height_label",
-          "value": "48px"
+          "value": "64px"
         },
         {
           "identifier": "contact_block_1_title",
@@ -2587,21 +2598,21 @@
           "type": "text",
           "description": "footer_link_1_text_description",
           "label": "footer_link_1_text_label",
-          "value": "Back to portal"
+          "value": "Terms of Service"
         },
         {
           "identifier": "footer_link_1_url",
           "type": "text",
           "description": "footer_link_1_url_description",
           "label": "footer_link_1_url_label",
-          "value": "https://portal.gecsws.com"
+          "value": "#"
         },
         {
           "identifier": "footer_link_2_text",
           "type": "text",
           "description": "footer_link_2_text_description",
           "label": "footer_link_2_text_label",
-          "value": "link2"
+          "value": "Privacy Policy"
         },
         {
           "identifier": "footer_link_2_url",
@@ -2615,14 +2626,14 @@
           "type": "text",
           "description": "footer_link_3_text_description",
           "label": "footer_link_3_text_label",
-          "value": "link3"
+          "value": ""
         },
         {
           "identifier": "footer_link_3_url",
           "type": "text",
           "description": "footer_link_3_url_description",
           "label": "footer_link_3_url_label",
-          "value": "#"
+          "value": ""
         },
         {
           "identifier": "facebook_link",
@@ -2650,14 +2661,14 @@
           "type": "text",
           "description": "instagram_link_description",
           "label": "instagram_link_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "youtube_link",
           "type": "text",
           "description": "youtube_link_description",
           "label": "youtube_link_label",
-          "value": ""
+          "value": "#"
         },
         {
           "identifier": "show_credit_link",

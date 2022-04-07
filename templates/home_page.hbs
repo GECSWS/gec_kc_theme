@@ -132,7 +132,7 @@
     {{!-------------
        Custom blocks
        -------------}}
-    <div class="custom-blocks bg-custom-blocks" id="custom-blocks">
+    <div class="custom-blocks bg-custom-blocks py-7" id="custom-blocks">
       <script type="text/javascript">
         ready(function() {
           Util.renderTemplate(document.getElementById('custom-blocks'), 'custom-blocks', Theme.customBlocks);
@@ -264,7 +264,7 @@
 
 
                         {{#if (compare @index "<=" 5)}}
-                        <div class="card card-body h-full text-center bg-white transition-fast shadow-xs hover:text-primary hover:shadow-xlg">
+                        <div class="card card-body card-category border-0 h-full text-center bg-white transition-fast shadow hover:text-primary hover:shadow-xlg">
                         {{/if}}
 
 
@@ -614,6 +614,9 @@
       </div>
     </div>
   {{/isnt~}}
+
+
+
 
   {{#isnt settings.contact_block_style 'none'}}
     {{!--------------
