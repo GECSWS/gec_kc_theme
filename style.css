@@ -15820,6 +15820,9 @@ a:hover .icon-circle {
   background-color: $bg_color_footer;
 }
 
+.footer svg.svg-shape.top-0 {
+  fill: #f4f7fb;
+}
 
 .footer .hr{
   border-top: 1px solid opacity($color_footer_link,10);
