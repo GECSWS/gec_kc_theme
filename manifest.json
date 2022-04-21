@@ -1,7 +1,7 @@
 {
   "name": "GEC KC Theme",
   "author": "Zenplates",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -13,7 +13,7 @@
           "type": "color",
           "description": "color_primary_description",
           "label": "color_primary_label",
-          "value": "rgba(41, 100, 172, 1)"
+          "value": "rgba(31, 76, 131, 1)"
         },
         {
           "identifier": "color_primary_inverse",
@@ -133,7 +133,6 @@
               "label": "Assistant (Google)",
               "value": "'Assistant', sans-serif"
             },
-
             {
               "label": "Bitter (Google)",
               "value": "'Bitter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -315,8 +314,6 @@
               "label": "Assistant (Google)",
               "value": "'Assistant', sans-serif"
             },
-
-
             {
               "label": "Arimo (Google)",
               "value": "'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -527,7 +524,7 @@
           "type": "text",
           "description": "tagline_description",
           "label": "tagline_label",
-          "value": "GEC |  Knowlege Center"
+          "value": "GEC |  Knowledge Center"
         }
       ]
     },
@@ -1240,7 +1237,7 @@
           "type": "list",
           "description": "custom_block_style_description",
           "label": "custom_block_style_label",
-          "value": "cards",
+          "value": "none",
           "options": [
             {
               "label": "None",
@@ -1593,7 +1590,7 @@
           "type": "text",
           "description": "content_block_image_height_description",
           "label": "content_block_image_height_label",
-          "value": "80px"
+          "value": "96px"
         }
       ]
     },
@@ -1736,7 +1733,7 @@
           "type": "text",
           "description": "promoted_articles_heading_description",
           "label": "promoted_articles_heading_label",
-          "value": "Popular articles"
+          "value": "Promoted articles"
         },
         {
           "identifier": "promoted_article_list_columns",
@@ -1816,7 +1813,7 @@
           "type": "list",
           "description": "color_contact_blocks_description",
           "label": "color_contact_blocks_label",
-          "value": "primary",
+          "value": "secondary",
           "options": [
             {
               "label": "White",
@@ -1856,7 +1853,7 @@
           "type": "list",
           "description": "number_contact_blocks_description",
           "label": "number_contact_blocks_label",
-          "value": "3",
+          "value": "1",
           "options": [
             {
               "label": "1",
@@ -1881,7 +1878,7 @@
           "type": "list",
           "description": "number_contact_block_columns_description",
           "label": "number_contact_block_columns_label",
-          "value": "3",
+          "value": "1",
           "options": [
             {
               "label": "1",
@@ -1941,7 +1938,7 @@
           "type": "text",
           "description": "contact_block_2_description_description",
           "label": "contact_block_2_description_label",
-          "value": "Chat with us"
+          "value": "Contact Support Team"
         },
         {
           "identifier": "contact_block_2_url",
@@ -2056,7 +2053,7 @@
           "type": "text",
           "description": "cta_element_heading_description",
           "label": "cta_element_heading_label",
-          "value": "Can't find what you're looking for?"
+          "value": ""
         },
         {
           "identifier": "color_heading_cta",
@@ -2070,7 +2067,7 @@
           "type": "text",
           "description": "cta_element_body_description",
           "label": "cta_element_body_label",
-          "value": ""
+          "value": "Can’t find the answers you’re looking for? We’re here to help."
         },
         {
           "identifier": "color_text_cta",
@@ -2091,7 +2088,7 @@
           "type": "color",
           "description": "bg_color_cta_description",
           "label": "bg_color_cta_label",
-          "value": "#ecf5ff"
+          "value": "rgba(244, 247, 251, 1)"
         }
       ]
     },
@@ -2103,7 +2100,7 @@
           "type": "list",
           "description": "category_sidebar_description",
           "label": "category_sidebar_label",
-          "value": "none",
+          "value": "category-list",
           "options": [
             {
               "label": "None",
@@ -2392,7 +2389,7 @@
           "type": "checkbox",
           "description": "enable_lightboxes_description",
           "label": "enable_lightboxes_label",
-          "value": false
+          "value": true
         },
         {
           "identifier": "enable_video_player",

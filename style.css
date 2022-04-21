@@ -1466,7 +1466,7 @@ fieldset:disabled a.button {
 }
 
 .link-stretched::after {
-  position: absolute;
+  /*position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -1475,6 +1475,7 @@ fieldset:disabled a.button {
   content: "";
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0);
+  */
 }
 
 .link-anchor {
@@ -2844,9 +2845,12 @@ html[dir="rtl"] .notification-left-aligned {
   background-clip: border-box;
   border: 1px solid $color_border;
   border-radius: 0.5rem;
+  transition: all 150ms ease;
 }
-
-
+.card:hover
+{
+  transform: translateY(-3px);
+}
 
 .card-body {
   flex: 1 1 auto;
@@ -2859,10 +2863,60 @@ html[dir="rtl"] .notification-left-aligned {
   transition: ease-in-out all 0.3s;
 }
 
+.subcategories .card-category.shadow{
+  box-shadow:0 0 0 0 rgba(39, 95, 164, 0);
+}
+
 
 .card-category.shadow:hover{
   box-shadow:0 1rem 3rem -0.25rem rgba(39, 95, 164, 0.25);
 }
+
+
+
+.subcategories{
+  display: flex;
+}
+
+.subcategories .image{
+  width: 20%;
+}
+
+.subcategories .image object{
+  height: 3rem !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all ease-in-out 0.3s;
+
+}
+
+.subcategories:hover .image object{
+  filter: invert(22%) sepia(21%) saturate(4646%) hue-rotate(192deg) brightness(92%) contrast(83%);
+}
+
+
+
+.subcategories .image object#image-4416430827155,
+.subcategories .image object#image-360002171054,
+.subcategories .image object#image-360003288873
+{
+  height: 2rem !important;
+}
+
+
+
+.subcategories .description{
+  width: 80%;
+}
+
+
+
+.subcategories:hover .description h3{
+  transition: all ease-in-out 0.3s;
+  color: $color_primary;
+}
+
 
 
 
@@ -3963,6 +4017,13 @@ html[dir="rtl"] .notification-left-aligned {
 .hover\:text-tertiary-inverse:hover {
   color: $color_tertiary_inverse;
 }
+
+
+.hover\:px-3:hover{
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
 
 @media (min-width: 576px) {
   .sm\:text-inherit {
@@ -15847,7 +15908,7 @@ a:hover .icon-circle {
 }
 
 .footer svg.svg-shape.top-0 {
-  fill: #f4f7fb;
+  fill: #ffffff;
 }
 
 .footer .hr{
