@@ -1466,7 +1466,7 @@ fieldset:disabled a.button {
 }
 
 .link-stretched::after {
-  /*position: absolute;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -1475,7 +1475,7 @@ fieldset:disabled a.button {
   content: "";
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0);
-  */
+
 }
 
 .link-anchor {
