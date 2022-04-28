@@ -653,7 +653,7 @@ caption {
   margin-right: -1rem;
 }
 
-.badge, .recent-activity-item-parent {
+.badge{
   padding: 0.25em 0.375em;
   font-size: 0.75rem;
   font-weight: 600;
@@ -666,6 +666,24 @@ caption {
   background-color: #EDF2F7;
   transition: 0.15s ease-in-out;
 }
+
+
+.recent-activity-item-parent {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: #000;
+  transition: 0.15s ease-in-out;
+}
+
+
+
+
+
+
 
 a.badge:focus, a.recent-activity-item-parent:focus, a.badge:hover, a.recent-activity-item-parent:hover {
   color: #1A202C;
@@ -701,7 +719,7 @@ a.badge:focus, a.recent-activity-item-parent:focus, a.badge:hover, a.recent-acti
   background-color: transparent;
   border: 1px solid $color_border;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 3rem;
   transition: 0.15s ease-in-out;
 }
 
@@ -1202,7 +1220,8 @@ fieldset:disabled a.button {
 .search [type="search"] {
   padding: 0.5em 0.75em;
   margin: 0 0.5rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
+  border-color: transparent;
 }
 
 .search-sm [type="search"] {
@@ -1670,8 +1689,29 @@ fieldset:disabled a.button {
 .list-group-item.is-active {
   z-index: 2;
   color: #fff;
-  background-color: $color_link;
-  border-color: $color_link;
+  background-color: $color_primary;
+  border-color: $color_primary;
+  transition: all ease-in-out 0.3s;
+}
+
+.list-group-item.is-active a{
+  color: #fff;
+  font-weight: 600;
+}
+
+
+.list-group-item a:hover{
+  text-decoration: underline;
+  color: $color_link;
+  background: none;
+}
+
+.list-group-item.is-active:hover{
+  background: $color_link;
+}
+
+.list-group-item.is-active:hover a{
+  color: white;
 }
 
 .list-group-horizontal {
@@ -2927,6 +2967,16 @@ html[dir="rtl"] .notification-left-aligned {
 
 .cta h3 {
   color: $color_heading_cta;
+}
+
+.cta .button{
+  transition: all ease-in-out 0.3s;
+  border: transparent;
+}
+
+.cta .button:hover{
+  background: $color_link;
+  transform: scale(1.1);
 }
 
 .hero {
@@ -15328,7 +15378,7 @@ a.badge-answered:focus, a.badge-answered.is-focused, .badge-answered:focus, .bad
   background-color: transparent;
   border: 1px solid $color_border;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 3rem;
   transition: 0.15s ease-in-out;
   color: $color_primary_inverse;
   border-color: $color_primary;
@@ -15507,6 +15557,10 @@ a:hover .icon-circle {
   }
 }
 
+
+.recent-activity{
+  background: #eee;
+}
 .recent-articles h2,
 .related-articles h2 {
   font-size: 1.25rem;
@@ -15582,9 +15636,18 @@ a:hover .icon-circle {
   position: relative;
   display: inline-block;
   width: 100%;
-  border: 1px solid $color_border;
-  border-radius: 4px;
-  padding: 1rem 1.25rem;
+  background: white;
+  border: 3px solid transparent;
+  border-radius: 0.5rem;
+  padding: 2rem 2rem;
+  transition:  all ease-in-out 0.3s;
+}
+
+.recent-activity-item:hover {
+  box-shadow: 0 1rem 3rem -0.25rem rgba(0, 0, 0, 0.25);
+  border: 3px solid rgba(31, 76, 131, 1);
+  transform: translateY(-3px);
+
 }
 
 .recent-activity-item-link {
@@ -15592,11 +15655,11 @@ a:hover .icon-circle {
   font-weight: 600;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  color: $color_primary
 }
 
 .recent-activity-item-meta {
   font-size: 0.9375rem;
-  margin-bottom: 0;
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
@@ -15637,7 +15700,11 @@ a:hover .icon-circle {
 
 .recent-activity-controls a {
   display: block;
-  margin-top: 1rem;
+  margin: 3rem auto;
+  width: 400px;
+  text-align: center;
+  font-weight: 600;
+  color: black
 }
 
 .sidebar {

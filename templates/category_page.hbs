@@ -69,21 +69,96 @@
 <div class="container" id="page-container">
   <div class="row row-lg my-6">
 
-    <div class="col">
+    <div class="col-12 md:col-9">
 
       {{!---------------
          Category header
          ---------------}}
       <header>
-        <h1>
-          {{category.name}}
-        </h1>
-        {{#if category.description}}
-          <p class="font-size-xl font-light text-gray-600">
-            {{category.description}}
-          </p>
-        {{/if}}
+
+          <div class="row my-6">
+              <div class="col-3 md:col-2">
+                  <div class="image">
+                      {{#if settings.content_block_image_height}}
+                          <object type="image/svg+xml" id="image-{{category.id}}" class="svg-icon {{#is settings.content_block_alignment 'left'}}mr{{else}}mx{{/is}}-auto {{#if (compare @index ">=" 6)}} {{else}} mb-4 {{/if}}" data-asset="image" data-asset-id="category-{{category.id}}"
+                                  data="{{#is category.id 200032439}}
+                                      {{ settings.content_block_1_image}}
+                                  {{/is}}
+                                      {{#is category.id 115000484474}}
+                                          {{ settings.content_block_2_image}}
+                                      {{/is}}
+                                      {{#is category.id 360003296533}}
+                                          {{ settings.content_block_3_image}}
+                                      {{/is}}
+                                      {{#is category.id 201145673}}
+                                          {{ settings.content_block_4_image}}
+                                      {{/is}}
+                                      {{#is category.id 4404036501267}}
+                                          {{ settings.content_block_5_image}}
+                                      {{/is}}
+                                      {{#is category.id 201730306}}
+                                          {{ settings.content_block_6_image}}
+                                      {{/is}}
+                                      {{#is category.id 201470783}}
+                                          {{ asset 'bullhorn-outline.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 201346663}}
+                                          {{ asset 'account-group-outline.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 360003288873}}
+                                      {{ asset 'logo-kansas.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 4416430827155}}
+                                          {{ asset 'logo-egle.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 360002171054}}
+                                          {{ asset 'logo-vdh.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 4407659006483}}
+                                          {{ asset 'cloud-check-outline.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 115000131534}}
+                                          {{ asset 'cellphone-check.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 1500001207081}}
+                                          {{ asset 'poll.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 115000018883}}
+                                          {{ asset 'book-open-variant.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 115000299246}}
+                                          {{ asset 'archive-clock-outline.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 360005005094}}
+                                          {{ asset 'cup-water.svg'}}
+                                      {{/is}}
+                                      {{#is category.id 201238936}}
+                                          {{ asset 'file-chart-check-outline.svg'}}
+                                      {{/is}}"
+                                  style="width: 100%; height: auto;">
+                              {{category.name}}
+                          </object>
+                      {{/if}}
+                  </div>
+              </div>
+              <div class="col-9  md:col-10">
+                  <h1 class="mt-0">
+                      {{category.name}}
+                  </h1>
+                  {{#if category.description}}
+                      <p class="font-size-xl font-light text-gray-600">
+                          {{category.description}}
+                      </p>
+                  {{/if}}
+              </div>
+          </div>
+
       </header>
+
+
+        <hr class="border-top-0 border-bottom" />
+
+
 
       {{!------------
          Section list
@@ -91,7 +166,7 @@
       {{#if sections}}
         <div class="row">
           {{#each sections}}
-            <div class="col-12 mb-4{{~#is ../settings.article_list_columns '1'}} md:col-6{{/is~}}">
+            <div class="col-12 mb-4 {{~#is ../settings.article_list_columns '2'}} md:col-6{{/is~}}">
 
               {{! Section heading }}
               <h2 class="h3">
@@ -130,7 +205,7 @@
                       {{~#is ../settings.article_list_style '3-bordered'}} mt-4 mb-6{{/is~}}">
                       {{~#each articles}}
                         <li class="col-12
-                          {{~#if (compare ../../settings.article_list_columns ">=" "2")}} md:col-6{{/if~}}
+                          {{~#if (compare ../../settings.article_list_columns ">" "2")}} md:col-6{{/if~}}
                           {{~#if (compare ../../settings.article_list_columns ">=" "3")}} lg:col-4{{/if~}}
                           {{~#is ../../settings.article_list_style '3-bordered'}} -mb-1px{{/is~}}">
                           <div class="relative media align-items-baseline py-{{#is ../../settings.article_list_style '3-bordered'}}5{{else}}3{{/is}} h-full
@@ -222,21 +297,29 @@
 
     </div>
 
-    {{~#isnt settings.category_sidebar 'none'}}
-      {{!------------------
-         Sidebar navigation
-         ------------------}}
-      <aside class="relative flex-first lg:col lg:mr-6 lg:max-w-12" data-element="navigation" data-template="{{#is settings.category_sidebar 'custom'}}sidebar-navigation{{else}}{{settings.category_sidebar}}{{/is}}"></aside>
-    {{/isnt~}}
+   <div class=" col-12 md:col-3 lg:flex-first lg:border-right">
+       {{~#is settings.cta_style 'sidebar'}}
+           {{~#isnt settings.cta_location 'home'}}
+           {{!--------------
+              Call-to-action
+              --------------}}
+               <aside class="md:col_ {{#is settings.category_sidebar 'none'}}md:max-w-13_ {{else}} md:max-w-12_{{/is}}" data-element="template" data-template="call-to-action"></aside>
+           {{/isnt~}}
+       {{/is~}}
 
-    {{~#is settings.cta_style 'sidebar'}}
-      {{~#isnt settings.cta_location 'home'}}
-        {{!--------------
-           Call-to-action
-           --------------}}
-        <aside class="md:col {{#is settings.category_sidebar 'none'}}md:max-w-13{{else}}md:max-w-12{{/is}}" data-element="template" data-template="call-to-action"></aside>
-      {{/isnt~}}
-    {{/is~}}
+
+       {{~#isnt settings.category_sidebar 'none'}}
+       {{!------------------
+          Sidebar navigation
+          ------------------}}
+           <aside class="relative flex-first_ lg:col_ lg:mr-6_ lg:max-w-12_" data-element="navigation" data-template="{{#is settings.category_sidebar 'custom'}}sidebar-navigation{{else}}{{settings.category_sidebar}}{{/is}}"></aside>
+       {{/isnt~}}
+
+
+   </div>
+
+
+
 
   </div> {{! /.row }}
 </div> {{! /#page-container }}

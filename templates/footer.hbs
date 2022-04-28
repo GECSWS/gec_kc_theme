@@ -1226,6 +1226,7 @@
 
 {{! Category list }}
 <template id="tmpl-category-list">
+
   <ul class="list-unstyled my-4 md:my-5" x-data="toggle({ isOpen: false })" @collapse:show.stop="open" @collapse:hide.stop="close">
     <li class="border-top border-bottom lg:border-transparent">
 
@@ -1243,10 +1244,10 @@
             {{t 'categories'}}
           </a>
         </h3>
-        <ul class="list-unstyled font-size-md">
+        <ul class="list-unstyled list-group font-size-md">
           <% categories.forEach(function(category) { %>
-            <li>
-              <a class="block py-2 text-inherit<% if (category.isActive) { %> underline<% } %>" href="<%= category.html_url %>">
+            <li class="list-group-item  <% if (category.isActive) { %> is-active<% } %>">
+              <a class="list-group-item-action  <% if (category.isActive) { %>  <% } %>" href="<%= category.html_url %>">
                 <%= category.name %>
               </a>
             </li>
@@ -1332,5 +1333,7 @@
     </ul>
   <% } %>
 </template>
+
+
 
 
