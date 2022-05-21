@@ -208,11 +208,11 @@
                           {{~#if (compare ../../settings.article_list_columns ">" "2")}} md:col-6{{/if~}}
                           {{~#if (compare ../../settings.article_list_columns ">=" "3")}} lg:col-4{{/if~}}
                           {{~#is ../../settings.article_list_style '3-bordered'}} -mb-1px{{/is~}}">
-                          <div class="relative media align-items-baseline py-{{#is ../../settings.article_list_style '3-bordered'}}5{{else}}3{{/is}} h-full
+                          <div class="relative media align-items-baseline py-{{#is ../../settings.article_list_style '3-bordered'}}3{{else}}3{{/is}} h-full
                             {{~#is ../../settings.article_list_style '1-bullet'}} pr-7{{/is~}}
                             {{~#is ../../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}
                             {{~#isnt ../../settings.article_list_excerpt 0}} font-semibold{{/isnt~}}
-                            {{~#is ../../settings.article_list_style '3-bordered'}} border-top border-bottom{{#is ../../settings.article_list_columns "1"}}{{#if @last}} border-bottom-0{{/if}}{{/is}}{{/is~}}">
+                            {{~#is ../../settings.article_list_style '3-bordered'}} border-top border-bottom {{#is ../../settings.article_list_columns "1"}}{{#if @last}} border-bottom-0{{/if}}{{/is}}{{/is~}}">
                             {{~#is ../../settings.article_list_style '3-bordered'}}
                               <div class="flex" x-data="{ src: Theme.assets['article'] }">
                                 <template x-if="src">
@@ -221,7 +221,7 @@
                               </div>
                             {{/is~}}
                             <div class="media-body">
-                              <a class="link-stretched flex align-items-baseline justify-content-between text-inherit font-size-lg transition-fast
+                              <a class="link-stretched flex align-items-baseline justify-content-between text-inherit font-size-md transition-fast
                                 {{~#is ../../settings.promoted_article_list_style '3-bordered'}} font-medium hover:no-underline{{/is~}}
                                 {{~#is ../../settings.promoted_article_style 'bold'}}{{#if promoted}} font-bold{{/if}}{{/is~}}" href="{{url}}">                                <span class="w-full">
                                   {{title}}

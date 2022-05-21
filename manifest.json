@@ -1,7 +1,7 @@
 {
   "name": "GEC KC Theme",
   "author": "Zenplates",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -1602,7 +1602,7 @@
           "type": "list",
           "description": "article_list_style_description",
           "label": "article_list_style_label",
-          "value": "1-bullet",
+          "value": "3-bordered",
           "options": [
             {
               "label": "Bullet list",
@@ -1627,7 +1627,7 @@
           "type": "list",
           "description": "article_list_columns_description",
           "label": "article_list_columns_label",
-          "value": "2",
+          "value": "1",
           "options": [
             {
               "label": "1",
