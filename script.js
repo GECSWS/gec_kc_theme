@@ -95,5 +95,13 @@
 
     window.CollapsibleNav = CollapsibleNav;
 
+
+    $('.recent-activity-header').html('Recent Updates');
+
   });
+
+
+
+
+
 })();
